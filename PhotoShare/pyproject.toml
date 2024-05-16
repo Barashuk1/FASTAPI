@@ -6,7 +6,7 @@ authors = ["Misha-HF <144258555+Misha-HF@users.noreply.github.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 alembic = "^1.13.1"
 sqlalchemy = "^2.0.30"
 fastapi = "^0.111.0"
