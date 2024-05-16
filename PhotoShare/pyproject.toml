@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "photoshare"
+version = "0.1.0"
+description = ""
+authors = ["Misha-HF <144258555+Misha-HF@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+alembic = "^1.13.1"
+sqlalchemy = "^2.0.30"
+fastapi = "^0.111.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+psycopg2 = "^2.9.9"
+pydantic = "^2.7.1"
+cloudinary = "^1.40.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
