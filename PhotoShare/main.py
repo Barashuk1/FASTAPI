@@ -1,9 +1,16 @@
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from photoshare.routes import images
 import uvicorn
 # from photoshare.conf.config import settings
+
+from photoshare.database.db import Session, get_db
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi.requests import Request
+from fastapi.responses import HTMLResponse
+from photoshare.database.models import Image
 
 app = FastAPI()
 
@@ -18,6 +25,9 @@ app.add_middleware(
 )
 
 app.include_router(images.router, prefix='/photoshare')
+app.mount("/static", StaticFiles(directory="photoshare/static"), name="static")
+
+templates = Jinja2Templates(directory="photoshare/templates")
 
 # @app.on_event("startup")
 # async def startup():
@@ -25,15 +35,21 @@ app.include_router(images.router, prefix='/photoshare')
 #                           decode_responses=True)
 #     await FastAPILimiter.init(r)
 
-@app.get("/")
-def read_root():
-    """
-    The read_root function returns a dictionary with the key 'message' and
-    value &quot;Contact manager API&quot;.
+# @app.get("/")
+# def read_root():
+#     """
+#     The read_root function returns a dictionary with the key 'message' and
+#     value &quot;Contact manager API&quot;.
 
-    :return: A dictionary
-    """
-    return {"message": "Wellcome to PhotoShare API!"}
+#     :return: A dictionary
+#     """
+#     return {"message": "Wellcome to PhotoShare API!"}
+
+
+@app.get("/", response_class=HTMLResponse)
+async def main_page(request: Request, db: Session = Depends(get_db)):
+    images = db.query(Image).all()
+    return templates.TemplateResponse("index.html", {"request": request, "images": images})
 
 if __name__ == '__main__':
     uvicorn.run(

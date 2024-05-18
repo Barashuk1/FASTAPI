@@ -9,3 +9,7 @@ class ImageBase(BaseModel):
     qr_code_view: str | None
     created_at: datetime
     user_id: int
+
+class ImageUpdate(BaseModel):
+    description: str
+    

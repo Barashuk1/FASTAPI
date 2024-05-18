@@ -1,0 +1,91 @@
+body {
+    background-image: url('background.jpg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: cover;
+    margin: auto;
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    background-color: #2196c5;
+    overflow: hidden;
+    text-align: left;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.profile-icon {
+    width: 30px; 
+    height: 30px;
+    margin: 30px;
+    background-color: #ddd; 
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-icon a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar a {
+    display: inline-block;
+    color: white;
+    padding: 21px 30px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 {
+    margin: 0 0 10px 0;
+}
+
+p {
+    margin: 0;
+}

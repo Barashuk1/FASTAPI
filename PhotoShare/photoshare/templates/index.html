@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Images</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="/">Стрічка</a>
+        </div>
+        <div class="profile-icon">
+            <a href="/profile"><i class="fas fa-user"></i></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Рекомендації</h1>
+        <ul>
+            {% for image in images %}
+            <li>
+                <img src="{{ image.url }}" alt="{{ image.description }}">
+                <!-- <p>{{ image.description }}</p> -->
+                <p>Rate: {{ image.rate }}</p>
+                <p>Likes: {{ image._likes }}</p>
+                <p>DisLikes: {{ image._dislikes }}</p>
+                <p>Created at: {{ image.created_at }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
