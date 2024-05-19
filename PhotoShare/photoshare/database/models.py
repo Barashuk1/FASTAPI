@@ -145,6 +145,7 @@ class User(Base):
     password: Mapped[str]
     role: Mapped[str] = mapped_column(default='user')
     created_at: Mapped[datetime] = mapped_column(default=func.now())
+    is_active: Mapped[bool] = mapped_column(default=True)
     refresh_token: Mapped[str | None]
 
 
