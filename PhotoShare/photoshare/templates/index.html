@@ -22,8 +22,8 @@
                 <img src="{{ image.url }}" alt="{{ image.description }}">
                 <!-- <p>{{ image.description }}</p> -->
                 <p>Rate: {{ image.rate }}</p>
-                <p>Likes: {{ image._likes }}</p>
-                <p>DisLikes: {{ image._dislikes }}</p>
+                <p>Likes: {{ image.likes }}</p>
+                <p>DisLikes: {{ image.dislikes }}</p>
                 <p>Created at: {{ image.created_at }}</p>
             </li>
             {% endfor %}

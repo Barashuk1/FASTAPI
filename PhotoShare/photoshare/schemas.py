@@ -1,15 +1,22 @@
 from pydantic import BaseModel
 from datetime import datetime
 
-class ImageBase(BaseModel):
+
+class ImageCreate(BaseModel):
     url: str
     description: str
+    created_at: datetime
+
+
+class ImageDB(ImageCreate):
+    id: int
+    likes: int
+    dislikes: int
     rate: float
     url_view: str | None
     qr_code_view: str | None
-    created_at: datetime
     user_id: int
+
 
 class ImageUpdate(BaseModel):
     description: str
-    
