@@ -38,3 +38,10 @@ def get_image_url_func(db: Session, url_view: str) -> ImageDB:
 def get_image_func(db: Session, image_id: int) -> ImageDB:
     db_image = db.query(Image).filter(Image.id == image_id).first()
     return db_image
+
+
+def rate_images_func(db: Session, action: str) -> list[ImageDB]:
+    if action == 'asc':
+        return db.query(Image).order_by(Image.rate.asc()).all()
+    else:
+        return db.query(Image).order_by(Image.rate.desc()).all()

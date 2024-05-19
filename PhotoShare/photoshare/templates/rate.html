@@ -9,21 +9,29 @@
     <div class="navbar">
         <div>
             <a href="/">Стрічка</a>
-            <a href="/photoshare/images/rate/desc">Рейтинг</a>
+            {% if action == 'asc' %}
+            <a href="/photoshare/images/rate/desc">За спаданням</a>
+            {% else %}
+            <a href="/photoshare/images/rate/asc">За зростанням</a>
+            {% endif %}
         </div>
         <div class="profile-icon">
             <a href="/profile"><i class="fas fa-user"></i></a>
         </div>
     </div>
     <div class="container">
-        <h1>Рекомендації</h1>
+        {% if action == 'asc' %}
+        <h1>За зростанням</h1>
+        {% else %}
+        <h1>За спаданням</h1>
+        {% endif %}
         <ul>
-            {% for image in images %}
+            {% for image in rated_images %}
             <li>
                 <img src="{{ image.url }}" alt="Sorry, something went wrong!">
                 <!-- <img src="{{ image.url }}" alt="{{ image.description }}"> -->
                 <p>{{ image.description }}</p>
-                <p>Rate: {{ image.rate }}</p>
+                <p>Rate: {{ image.rate }}%</p>
                 <p>Likes: {{ image.likes }}</p>
                 <p>DisLikes: {{ image.dislikes }}</p>
                 <p>Created at: {{ image.created_at }}</p>
