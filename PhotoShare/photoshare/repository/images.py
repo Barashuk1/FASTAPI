@@ -40,8 +40,8 @@ def get_image_func(db: Session, image_id: int) -> ImageDB:
     return db_image
 
 
-def rate_images_func(db: Session, action: str) -> list[ImageDB]:
-    if action == 'asc':
+def rate_images_func(db: Session, order: str) -> list[ImageDB]:
+    if order == "asc":
         return db.query(Image).order_by(Image.rate.asc()).all()
     else:
         return db.query(Image).order_by(Image.rate.desc()).all()

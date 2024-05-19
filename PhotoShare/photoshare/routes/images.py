@@ -20,14 +20,12 @@ def get_image_url(url_view: str, db: Session = Depends(get_db)) -> ImageDB:
     return get_image_url_func(db, url_view)
 
 
-@router.get('/rate/{action}')
-def rate_images(request: Request, action: str, db: Session = Depends(get_db)):
-    if action not in ['asc', 'desc']:
-        return templates.TemplateResponse('404.html')
-    rated_images = rate_images_func(db, action)
+@router.get('/rate')
+def rate_images(request: Request, order: str = 'asc', db: Session = Depends(get_db)):
+    rated_images= rate_images_func(db, order)
     return templates.TemplateResponse(
         'rate.html',
-        {"request": request, "rated_images": rated_images, "action": action}
+        {"request": request, "rated_images": rated_images, "order": order}
     )
 
 
