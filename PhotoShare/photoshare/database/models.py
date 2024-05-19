@@ -22,9 +22,16 @@ image_m2m_user = Table(
     'image_m2m_user',
     Base.metadata,
     Column('image_id', Integer, ForeignKey('images.id')),
-    Column('user_id', Integer, ForeignKey('users.id')),
-    UniqueConstraint('image_id', 'user_id', name='unique_like_dislike')
+    Column('user_id_like', Integer, ForeignKey('users.id'), nullable=True),
+    Column('user_id_dislike', Integer, ForeignKey('users.id'), nullable=True),
+    UniqueConstraint('image_id', 'user_id_like', name='unique_like'),
+    UniqueConstraint('image_id', 'user_id_dislike', name='unique_dislike'),
+    UniqueConstraint(
+        'image_id', 'user_id_like', 'user_id_dislike',
+        name='unique_like_dislike'
+    )
 )
+
 
 
 class Image(Base):
@@ -35,10 +42,20 @@ class Image(Base):
     tags = relationship("Tag", secondary=image_m2m_tag, backref="images")
     comments = relationship('Comment', backref='image')
     _likes = relationship(
-        'User', secondary=image_m2m_user, backref='liked_images', overlaps="disliked_images,dislikes"
+        'User', secondary=image_m2m_user,
+        primaryjoin='Image.id == image_m2m_user.c.image_id',
+        secondaryjoin='User.id == image_m2m_user.c.user_id_like',
+        foreign_keys='[image_m2m_user.c.image_id, image_m2m_user.c.user_id_like]',
+        backref='liked_images',
+        overlaps="disliked_images,dislikes"
     )
     _dislikes = relationship(
-        'User', secondary=image_m2m_user, backref='disliked_images', overlaps="liked_images,likes"
+        'User', secondary=image_m2m_user,
+        primaryjoin='Image.id == image_m2m_user.c.image_id',
+        secondaryjoin='User.id == image_m2m_user.c.user_id_dislike',
+        foreign_keys='[image_m2m_user.c.image_id, image_m2m_user.c.user_id_dislike]',
+        backref='disliked_images',
+        overlaps="liked_images,likes"
     )
     rate: Mapped[float] = mapped_column(default=0.0)
     url_view: Mapped[str | None] = mapped_column(String(255), default=None)
@@ -96,7 +113,7 @@ class Image(Base):
         if total_amount == 0:
             self.rate =  0.0
         else:
-            self.rate = (self.likes / total_amount) * 100
+            self.rate = round((self.likes / total_amount) * 100, 1)
 
 
 class Tag(Base):
@@ -135,8 +152,36 @@ Base.metadata.drop_all(bind=engine)
 Base.metadata.create_all(bind=engine)
 
 
+from photoshare.database.db import test_session
+
+user1 = User(
+    username='user1',
+    email='dffdfdf@fdf.dfpdf',
+    password='password1',
+    role='user'
+)
+
+image1 = Image(
+    url='https://www.example.com/image1.jpg',
+    description='Image 1 description',
+    user_id=1
+)
+image2 = Image(
+    url='https://www.example.com/image2.jpg',
+    description='Image 2 description',
+    user_id=1
+)
+
+image1.update_like(user1, 'add')
+image2.update_dislike(user1, 'add')
+
+test_session.add(user1)
+test_session.commit()
+test_session.add_all([image1, image2])
+test_session.commit()
+
 """
-from db import test_session
+from photoshare.database.db import test_session
 
 user1 = User(
     username='user1',
