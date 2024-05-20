@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Images</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<style>
+    .container {
+        text-align: center;
+    }
+    .sort-buttons {
+        margin-top: 20px;
+    }
+    .sort-buttons button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition-duration: 0.4s;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .sort-buttons button:hover {
+        background-color: #45a049;
+    }
+</style>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="/">Стрічка</a>
+            <a href="/photoshare/images/rate">Рейтинг</a>
+        </div>
+        <div class="profile-icon">
+            <a href="/profile"><i class="fas fa-user"></i></a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>{{ "За зростанням" if order == 'asc' else "За спаданням" }}</h1>
+        <div class="sort-buttons">
+            <form action="/photoshare/images/rate" method="get">
+                <button type="submit" name="order" value="asc">Показати за зростанням</button>
+                <button type="submit" name="order" value="desc">Показати за спаданням</button>
+            </form>
+        </div>
+        
+        <ul id="image-list">
+            {% for image in rated_images %}
+            <li class="image-item" data-rate="{{ image.rate }}">
+                <img src="{{ image.url }}" alt="Sorry, something went wrong!">
+                <p>{{ image.description }}</p>
+                <p>Rate: {{ image.rate }}%</p>
+                <p>Likes: {{ image.likes }}</p>
+                <p>DisLikes: {{ image.dislikes }}</p>
+                <p>Created at: {{ image.created_at }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
