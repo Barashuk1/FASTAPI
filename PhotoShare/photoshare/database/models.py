@@ -149,8 +149,8 @@ class User(Base):
     refresh_token: Mapped[str | None]
 
 
-Base.metadata.drop_all(bind=engine)
-Base.metadata.create_all(bind=engine)
+# Base.metadata.drop_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 
 
 from photoshare.database.db import test_session

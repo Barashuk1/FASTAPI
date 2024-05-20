@@ -14,6 +14,12 @@ uvicorn = {extras = ["standard"], version = "^0.29.0"}
 psycopg2 = "^2.9.9"
 pydantic = "^2.7.1"
 cloudinary = "^1.40.0"
+pydantic-settings = "^2.2.1"
+libgravatar = "^1.0.4"
+python-jose = "^3.3.0"
+passlib = "^1.7.4"
+python-multipart = "^0.0.9"
+bcrypt = "4.0.1"
 
 
 [build-system]
