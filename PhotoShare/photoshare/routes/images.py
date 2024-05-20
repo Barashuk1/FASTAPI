@@ -2,10 +2,8 @@ from fastapi import FastAPI, Depends,  APIRouter
 from photoshare.schemas import *
 from photoshare.database.db import Session, get_db
 from photoshare.repository.images import *
-# from fastapi.templating import Jinja2Templates
-# from fastapi.requests import Request
-from photoshare.database.models import User
-from photoshare.services.auth import auth_service
+from fastapi.templating import Jinja2Templates
+from fastapi.requests import Request
 
 
 router = APIRouter(prefix='/images', tags=["images"])
