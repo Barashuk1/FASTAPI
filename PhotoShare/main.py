@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from photoshare.routes import images, tags, auth, comment
+from photoshare.routes import images, tags, auth, comment, profile
 import uvicorn
 # from photoshare.conf.config import settings
 
@@ -28,9 +28,11 @@ app.include_router(images.router)
 app.include_router(tags.router)
 app.include_router(comment.router)
 app.include_router(auth.router)
+app.include_router(profile.router)
 
 
 app.mount("/static", StaticFiles(directory="photoshare/static"), name="static")
+
 
 
 templates = Jinja2Templates(directory="photoshare/services/templates")

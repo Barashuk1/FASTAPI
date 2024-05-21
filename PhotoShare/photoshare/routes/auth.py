@@ -6,7 +6,7 @@ from photoshare.database.db import get_db
 from photoshare.schemas import UserModel, UserResponse, TokenModel
 from photoshare.repository import users as repository_users
 from photoshare.database.models import User
-from photoshare.services.auth import auth_service, get_current_admin_user
+from photoshare.services.auth import auth_service
 # from photoshare.services.email import send_email
 
 router = APIRouter(prefix='/auth', tags=["auth"])
@@ -88,7 +88,8 @@ async def refresh_token(credentials: HTTPAuthorizationCredentials = Security(sec
 
 
 @router.put("/users/{user_id}/role", response_model=UserResponse)
-async def set_user_role(user_id: int, role: str, db: Session = Depends(get_db), current_admin: User = Depends(get_current_admin_user)):
+async def set_user_role(user_id: int, role: str, db: Session = Depends(get_db),
+                      current_admin: User = Depends(auth_service.get_current_user_roles(["admin"]))):
     if role not in ["user", "moderator"]:
         raise HTTPException(status_code=400, detail="Invalid role, use 'user', 'moderator'")
     user = await repository_users.update_user_role(db, user_id, role)
