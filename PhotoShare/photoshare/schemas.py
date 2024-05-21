@@ -79,3 +79,23 @@ class TokenModel(BaseModel):
     access_token: str
     refresh_token: str
     token_type: str = "bearer"
+
+
+class CommentBase(BaseModel):
+    text: str
+
+
+class CommentCreate(CommentBase):
+    pass
+
+
+class Comment(CommentBase):
+    id: int
+    image_id: int
+    created_at: datetime
+
+
+class CommentSchema(BaseModel):
+    image_id: int
+    created_at: datetime
+    text: str
