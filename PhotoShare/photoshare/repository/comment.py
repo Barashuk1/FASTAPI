@@ -7,16 +7,16 @@ from photoshare.database.models import Comment
 from photoshare.routes import *
 
 
-def add_comment(db: Session, comment: CommentCreate, photo_id: int):
-    db_comment = Comment(text=comment.text, photo_id=photo_id)
+def add_comment(db: Session, comment: CommentCreate, image_id: int):
+    db_comment = Comment(text=comment.text, image_id=image_id)
     db.add(db_comment)
     db.commit()
     db.refresh(db_comment)
     return db_comment
 
 
-def get_comments_by_photo(db: Session, photo_id: int):
-    return db.query(Comment).filter(Comment.photo_id == photo_id).all()
+def get_comments_by_photo(db: Session, image_id: int):
+    return db.query(Comment).filter(Comment.photo_id == image_id).all()
 
 
 def create_comment_func(image_id: int, comment: CommentCreate, db: Session):
@@ -27,8 +27,8 @@ def create_comment_func(image_id: int, comment: CommentCreate, db: Session):
     return db_comment
 
 
-def read_comments_func(photo_id: int, db: Session):
-    comments = db.query(Comment).filter(Comment.image_id == photo_id).all()
+def read_comments_func(image_id: int, db: Session):
+    comments = db.query(Comment).filter(Comment.image_id == image_id).all()
     return comments
 
 

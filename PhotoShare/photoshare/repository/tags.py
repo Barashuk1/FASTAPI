@@ -46,8 +46,8 @@ async def remove_tag(tag_id: int, db: Session)  -> Tag | None:
 # from sqlalchemy.orm import Session
 # from sqlalchemy import and_
 
-# from src.database.models import Tag, User
-# from src.schemas import TagModel
+# from photoshare.database.models import Tag, User
+# from photoshare.schemas import TagModel
 
 
 # async def get_tags(skip: int, limit: int, user: User, db: Session) -> List[Tag]:
