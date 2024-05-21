@@ -80,6 +80,16 @@ class TokenModel(BaseModel):
     refresh_token: str
     token_type: str = "bearer"
 
+class UserProfile(BaseModel):
+    id: int
+    username: str
+    email: str
+    created_at: datetime
+    images_count: int
+
+class UserUpdate(UserModel):
+    pass
+
 
 class CommentBase(BaseModel):
     text: str
@@ -89,7 +99,7 @@ class CommentCreate(CommentBase):
     pass
 
 
-class Comment(CommentBase):
+class CommentResponse(CommentBase):
     id: int
     image_id: int
     created_at: datetime
