@@ -3,7 +3,7 @@ from photoshare.database.models import Image
 from photoshare.schemas import *
 
 
-def load_image_func(db: Session, image: ImageCreate) -> ImageDB:
+def load_image_func(db: Session, image: ImageBase) -> ImageDB:
     db_image = Image(**image.model_dump())
     db_image.user_id = 1    # temporary
     db.add(db_image)
