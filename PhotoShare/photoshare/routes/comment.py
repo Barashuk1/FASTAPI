@@ -30,7 +30,6 @@ def edit_comment(comment_id: int, comment_update: CommentCreate, db: Session = D
     return edit_comment_func(comment_id, comment_update, db, current_user)
 
 
-
 @router.delete("/{image_id}/comments/{comment_id}/")
 def delete_comment(comment_id: int, db: Session = Depends(get_db),
                       current_user: User = Depends(auth_service.get_current_user_roles(["admin", "moderator"]))):

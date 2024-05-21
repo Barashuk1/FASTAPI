@@ -13,7 +13,7 @@ templates = Jinja2Templates(directory="photoshare/templates")
 
 
 @router.post("/add")
-def load_image(image: ImageCreate, db: Session = Depends(get_db),
+def load_image(image: ImageBase, db: Session = Depends(get_db),
                       current_user: User = Depends(auth_service.get_current_user)) -> ImageDB:
     return load_image_func(db, image, current_user)
 

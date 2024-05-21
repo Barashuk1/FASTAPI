@@ -6,8 +6,8 @@ from photoshare.database.models import Comment, User
 from photoshare.routes import *
 
 
-def get_comments_by_photo(db: Session, photo_id: int):
-    return db.query(Comment).filter(Comment.image_id == photo_id).all()
+def get_comments_by_photo(db: Session, image_id: int):
+    return db.query(Comment).filter(Comment.photo_id == image_id).all()
 
 
 def create_comment_func(image_id: int, comment: CommentCreate, db: Session, user: User):
@@ -20,8 +20,8 @@ def create_comment_func(image_id: int, comment: CommentCreate, db: Session, user
     return db_comment
 
 
-def read_comments_func(photo_id: int, db: Session):
-    comments = db.query(Comment).filter(Comment.image_id == photo_id).all()
+def read_comments_func(image_id: int, db: Session):
+    comments = db.query(Comment).filter(Comment.image_id == image_id).all()
     return comments
 
 
