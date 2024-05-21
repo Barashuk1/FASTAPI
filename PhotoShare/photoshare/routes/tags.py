@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 from photoshare.database.db import get_db
 from photoshare.schemas import TagModel, TagResponse
 from photoshare.repository import tags as repository_tags
+from photoshare.services.auth import auth_service
+from photoshare.database.models import User
 
 router = APIRouter(prefix='/tags', tags=["tags"])
 

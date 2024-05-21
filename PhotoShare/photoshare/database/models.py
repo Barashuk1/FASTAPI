@@ -122,6 +122,7 @@ class Tag(Base):
     name: Mapped[str] = mapped_column(String(50), unique=True)
 
 
+
 class Comment(Base):
     __tablename__ = "comments"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -155,12 +156,13 @@ class User(Base):
 
 from photoshare.database.db import test_session
 
-user1 = User(
-    username='user1',
-    email='dffdfdf@fdf.dfpdf',
-    password='password1',
-    role='user'
-)
+# body = User(
+#     username='user1',
+#     email='dffdfdf@fdf.dfpdf',
+#     password='password1',
+#     role='user'
+# )
+
 
 image1 = Image(
     url='https://www.example.com/image1.jpg',
@@ -173,13 +175,13 @@ image2 = Image(
     user_id=1
 )
 
-image1.update_like(user1, 'add')
-image2.update_dislike(user1, 'add')
+# image1.update_like(user1, 'add')
+# image2.update_dislike(user1, 'add')
 
-test_session.add(user1)
-test_session.commit()
-test_session.add_all([image1, image2])
-test_session.commit()
+# test_session.add(user1)
+# test_session.commit()
+# test_session.add_all([image1, image2])
+# test_session.commit()
 
 """
 from photoshare.database.db import test_session
