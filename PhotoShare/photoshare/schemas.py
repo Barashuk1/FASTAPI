@@ -125,3 +125,8 @@ class CommentSchema(BaseModel):
     image_id: int
     created_at: datetime
     text: str
+
+
+class ImageCreateFromPC(BaseModel):
+    description: str
+    created_at: datetime

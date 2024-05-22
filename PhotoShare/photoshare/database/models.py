@@ -164,7 +164,6 @@ class User(Base):
 #     role='user'
 # )
 
-
 # image1 = Image(
 #     url='https://www.example.com/image1.jpg',
 #     description='Image 1 description',
@@ -175,7 +174,6 @@ class User(Base):
 #     description='Image 2 description',
 #     user_id=1
 # )
-
 
 # image1.update_like(user1, 'add')
 # image2.update_dislike(user1, 'add')

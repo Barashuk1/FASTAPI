@@ -2,6 +2,23 @@ from photoshare.database.db import Session
 from photoshare.database.models import Image, User
 from photoshare.schemas import *
 from fastapi import HTTPException
+from fastapi import FastAPI, File, UploadFile
+
+
+import cloudinary
+import cloudinary.uploader
+from cloudinary import CloudinaryImage
+from io import BytesIO
+import re
+import qrcode
+from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
+from qrcode.image.styledpil import StyledPilImage
+
+cloudinary.config(
+    cloud_name='str',
+    api_key='str',
+    api_secret='str'
+)
 
 
 
@@ -12,6 +29,29 @@ def load_image_func(db: Session, image: ImageBase, user: User) -> ImageDB:
     db.commit()
     db.refresh(db_image)
     return db_image
+
+
+def load_image_from_pc_func(db: Session, description, user: User, file: UploadFile = File()):
+    upload_result = cloudinary.uploader.upload(
+    file.file,
+    overwrite=True
+)
+    image_url = upload_result["url"]
+    print("image_url", image_url)
+    new_image = Image()
+    new_image.url = image_url
+    new_image.description = description
+    new_image.created_at = datetime.now()
+    new_image.user_id = user.id
+    db.add(new_image)
+    db.commit()
+    db.refresh(new_image)
+
+    return new_image
+   
+
+
+
 
 
 def delete_image_func(db: Session, image_id: int, user: User) -> ImageDB:
@@ -59,3 +99,66 @@ def rate_images_func(db: Session, order: str) -> list[ImageDB]:
         return db.query(Image).order_by(Image.rate.asc()).all()
     else:
         return db.query(Image).order_by(Image.rate.desc()).all()
+
+
+def get_transformation_func(db: Session, choice: int, image_id: int, user: User):
+    db_image = db.query(Image).filter(Image.id == image_id,
+                                     Image.user_id == user.id).first()
+    def transform(num):
+        if choice == 1:
+            return [
+                {'aspect_ratio': "1.0", 'gravity': "face",
+                    'width': "0.7", 'crop': "thumb"},
+                {'radius': "max"},
+                {'color': "skyblue", 'effect': "outline"},
+                {'color': "lightgray", 'effect': "shadow", 'x': 5, 'y': 8}
+            ]
+        elif choice == 2:
+            return [
+                {'aspect_ratio': "1.0", 'height': 250, 'crop': "fill"},
+                {'border': "5px_solid_lightblue"}
+            ]
+        elif choice == 3:
+            return [
+                {'height': 400, 'width': 250, 'crop': "fill"},
+                {'angle': 20},
+                {'effect': "outline", 'color': "brown"},
+                {'quality': "auto"},
+                {'fetch_format': "auto"}
+            ]
+        else:
+            raise HTTPException(
+                status_code=400, detail="Wrong choice. Enter 1, 2 or 3.")
+
+    transformation = transform(choice)
+    pattern = r"/([^/]+)\.png$"
+    match = re.search(pattern, db_image.url)
+    id = match.group(1)
+    transformed_image_url = CloudinaryImage(
+        id).build_url(transformation=transformation)
+    
+    qr = generate_qr_code(transformed_image_url)
+    db_image.url_view = transformed_image_url
+    db_image.qr_code_view = qr
+    db.commit()
+    db.refresh(db_image)
+    return db_image
+
+
+def generate_qr_code(image_url):
+    qr = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_L)
+    qr.add_data(image_url)
+    qr.make(fit=True)
+
+    img = qr.make_image(image_factory=StyledPilImage,
+                        module_drawer=RoundedModuleDrawer())
+
+    buffer = BytesIO()
+    img.save(buffer, format="PNG")
+    buffer.seek(0)
+
+    qr_code_url = cloudinary.uploader.upload(
+        buffer, resource_type="image")["url"]
+
+    return qr_code_url
+
