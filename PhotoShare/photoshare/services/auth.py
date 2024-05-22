@@ -61,11 +61,11 @@ class Auth:
         """
         to_encode = data.copy()
         if expires_delta:
-            expire = datetime.utcnow() + timedelta(seconds=expires_delta)
+            expire = datetime.now() + timedelta(seconds=expires_delta)
         else:
-            expire = datetime.utcnow() + timedelta(minutes=15)
+            expire = datetime.now() + timedelta(minutes=15)
         to_encode.update(
-            {"iat": datetime.utcnow(), "exp": expire, "scope": "access_token"})
+            {"iat": datetime.now(), "exp": expire, "scope": "access_token"})
         encoded_access_token = jwt.encode(
             to_encode, self.SECRET_KEY, algorithm=self.ALGORITHM)
         return encoded_access_token
@@ -83,11 +83,11 @@ class Auth:
         """
         to_encode = data.copy()
         if expires_delta:
-            expire = datetime.utcnow() + timedelta(seconds=expires_delta)
+            expire = datetime.now() + timedelta(seconds=expires_delta)
         else:
-            expire = datetime.utcnow() + timedelta(days=7)
+            expire = datetime.now() + timedelta(days=7)
         to_encode.update(
-            {"iat": datetime.utcnow(), "exp": expire, "scope": "refresh_token"})
+            {"iat": datetime.now(), "exp": expire, "scope": "refresh_token"})
         encoded_refresh_token = jwt.encode(
             to_encode, self.SECRET_KEY, algorithm=self.ALGORITHM)
         return encoded_refresh_token
@@ -154,6 +154,16 @@ class Auth:
         if user is None:
             raise credentials_exception
         return user
+    
+    def get_current_user_roles(self, required_roles: list):
+        async def roles_verifier(current_user: User = Depends(self.get_current_user), db: Session = Depends(get_db)):
+            if current_user.role not in required_roles:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Not enough permissions"
+                )
+            return current_user
+        return roles_verifier
 
     # def create_email_token(self, data: dict):
     #     """
@@ -199,16 +209,37 @@ class Auth:
 
 auth_service = Auth()
 
-def get_current_admin_user(current_user: User = Depends(auth_service.get_current_user)):
-    if current_user.role != "admin":
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, detail="Not enough permissions"
-        )
-    return current_user
+# def get_current_user_roles(required_roles: list):
+#     def roles_verifier(current_user: User = Depends(auth_service.get_current_user), db: Session = Depends(get_db)):
+#         if current_user.role not in required_roles:
+#             raise HTTPException(
+#                 status_code=status.HTTP_403_FORBIDDEN,
+#                 detail="Not enough permissions"
+#             )
+#         return current_user
+#     return roles_verifier
 
-def get_current_moder_user(current_user: User = Depends(auth_service.get_current_user)):
-    if current_user.role != "moderator":
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN, detail="Not enough permissions"
-        )
-    return current_user
+# def get_current_admin_user(current_user: User = Depends(auth_service.get_current_user)):
+#     if current_user.role != "admin":
+#         raise HTTPException(
+#             status_code=status.HTTP_403_FORBIDDEN, detail="Not enough permissions"
+#         )
+#     return current_user
+
+# def get_current_user_roles(required_roles: list):
+#     def roles_verifier(current_user: User = Depends(auth_service.get_current_user), db: Session = Depends(get_db)):
+#         if current_user.role not in required_roles:
+#             raise HTTPException(
+#                 status_code=status.HTTP_403_FORBIDDEN,
+#                 detail="Not enough permissions"
+#             )
+#         return current_user
+#     return roles_verifier
+
+
+# def get_current_moder_or_admin(current_user: User = Depends(auth_service.get_current_user)):
+#     if current_user.role not in {"moderator", "admin"}:
+#         raise HTTPException(
+#             status_code=status.HTTP_403_FORBIDDEN, detail="Not enough permissions"
+#         )
+#     return current_user

@@ -21,7 +21,8 @@ cloudinary.config(
 )
 
 
-def load_image_func(db: Session, image: ImageCreate, user: User) -> ImageDB:
+
+def load_image_func(db: Session, image: ImageBase, user: User) -> ImageDB:
     db_image = Image(**image.model_dump())
     db_image.user_id = user.id
     db.add(db_image)

@@ -40,14 +40,14 @@ class Image(Base):
     url: Mapped[str] = mapped_column(String(255))
     description: Mapped[str] = mapped_column(String(255))
     tags = relationship("Tag", secondary=image_m2m_tag, backref="images")
-    comments = relationship('Comment', backref='image')
+    comments = relationship('Comment', backref='images')
     _likes = relationship(
         'User', secondary=image_m2m_user,
         primaryjoin='Image.id == image_m2m_user.c.image_id',
         secondaryjoin='User.id == image_m2m_user.c.user_id_like',
         foreign_keys='[image_m2m_user.c.image_id, image_m2m_user.c.user_id_like]',
         backref='liked_images',
-        overlaps="disliked_images,dislikes"
+        overlaps="disliked_images,dislikes,_dislikes"
     )
     _dislikes = relationship(
         'User', secondary=image_m2m_user,
@@ -55,7 +55,7 @@ class Image(Base):
         secondaryjoin='User.id == image_m2m_user.c.user_id_dislike',
         foreign_keys='[image_m2m_user.c.image_id, image_m2m_user.c.user_id_dislike]',
         backref='disliked_images',
-        overlaps="liked_images,likes"
+        overlaps="liked_images,likes,_likes"
     )
     rate: Mapped[float] = mapped_column(default=0.0)
     url_view: Mapped[str | None] = mapped_column(String(255), default=None)
@@ -122,6 +122,7 @@ class Tag(Base):
     name: Mapped[str] = mapped_column(String(50), unique=True)
 
 
+
 class Comment(Base):
     __tablename__ = "comments"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -151,6 +152,7 @@ class User(Base):
 
 # Base.metadata.drop_all(bind=engine)
 # Base.metadata.create_all(bind=engine)
+
 
 
 # from photoshare.database.db import test_session
