@@ -1,7 +1,7 @@
 
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from photoshare.routes import images, tags, auth, comment, profile
+from photoshare.routes import images, tags, auth, comment, users
 import uvicorn
 # from photoshare.conf.config import settings
 
@@ -24,11 +24,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(images.router)
-app.include_router(tags.router)
-app.include_router(comment.router)
-app.include_router(auth.router)
-app.include_router(profile.router)
+app.include_router(images.router, prefix='/photoshare')
+app.include_router(comment.router, prefix='/photoshare')
+app.include_router(auth.router, prefix='/api')
+app.include_router(tags.router, prefix='/photoshare')
+app.include_router(users.router, prefix='/photoshare')
 
 
 app.mount("/static", StaticFiles(directory="photoshare/static"), name="static")
