@@ -64,6 +64,7 @@ class UserDb(BaseModel):
     email: str
     created_at: datetime
     role: str
+    is_active: bool
     class ConfigDict:
         from_attributes = True
 
@@ -100,8 +101,10 @@ class UserProfile(BaseModel):
     created_at: datetime
     images_count: int
 
-class UserUpdate(UserModel):
-    pass
+class UserUpdate(BaseModel):
+    username: Optional[str] = None
+    email: Optional[str] = None
+    password: Optional[str] = None
 
 
 class CommentBase(BaseModel):

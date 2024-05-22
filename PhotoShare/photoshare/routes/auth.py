@@ -3,7 +3,7 @@ from fastapi import APIRouter, HTTPException, Depends, status, Security, Backgro
 from fastapi.security import OAuth2PasswordRequestForm, HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 from photoshare.database.db import get_db
-from photoshare.schemas import UserModel, UserResponse, TokenModel
+from photoshare.schemas import UserModel, UserResponse, TokenModel, UserDb
 from photoshare.repository import users as repository_users
 from photoshare.database.models import User
 from photoshare.services.auth import auth_service
@@ -29,7 +29,7 @@ async def signup(body: UserModel, background_tasks: BackgroundTasks, request: Re
     """
     exist_user = await repository_users.get_user_by_email(body.email, db)
     if exist_user:
-        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Account already exists")
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Email already use")
     body.password = auth_service.get_password_hash(body.password)
     new_user = await repository_users.create_user(body, db)
     return {"user": new_user, "detail": "User successfully created"}
@@ -51,6 +51,9 @@ async def login(body: OAuth2PasswordRequestForm = Depends(), db: Session = Depen
     if user is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid email")
+    if not user.is_active:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, detail="User is inactive")
     if not auth_service.verify_password(body.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid password")
@@ -85,15 +88,6 @@ async def refresh_token(credentials: HTTPAuthorizationCredentials = Security(sec
     refresh_token = await auth_service.create_refresh_token(data={"sub": email})
     await repository_users.update_token(user, refresh_token, db)
     return {"access_token": access_token, "refresh_token": refresh_token, "token_type": "bearer"}
-
-
-@router.put("/users/{user_id}/role", response_model=UserResponse)
-async def set_user_role(user_id: int, role: str, db: Session = Depends(get_db),
-                      current_admin: User = Depends(auth_service.get_current_user_roles(["admin"]))):
-    if role not in ["user", "moderator"]:
-        raise HTTPException(status_code=400, detail="Invalid role, use 'user', 'moderator'")
-    user = await repository_users.update_user_role(db, user_id, role)
-    return {"user": user, "detail": "User successfully update"}
 
 
 # @router.get('/confirmed_email/{token}')
