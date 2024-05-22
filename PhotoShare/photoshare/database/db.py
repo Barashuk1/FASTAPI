@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
-SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://useradmin:supersecretpassword@localhost:5432/FastAPI_APP'
+SQLALCHEMY_DATABASE_URL = 'postgresql+psycopg2://useradmin:supersecretpassword@localhost:5433/FastAPI_APP'
 # SQLALCHEMY_DATABASE_URL = 'postgresql://useradmin:supersecretpassword@localhost:5432/FastAPI_APP'
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 

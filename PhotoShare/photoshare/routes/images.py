@@ -18,6 +18,15 @@ def load_image(image: ImageCreate, db: Session = Depends(get_db),
     return load_image_func(db, image, current_user)
 
 
+@router.post("/add_from_pc")
+def load_image_from_pc(
+    description: str,
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(auth_service.get_current_user)
+):
+    return load_image_from_pc_func(db, description, current_user, file)
+
 @router.get("/url/{url_view}")
 def get_image_url(url_view: str, db: Session = Depends(get_db)) -> ImageDB:
     return get_image_url_func(db, url_view)
@@ -47,3 +56,9 @@ def update_image(image_id: int, image: ImageUpdate, db: Session = Depends(get_db
 @router.get("/{image_id}")
 def get_image(image_id: int, db: Session = Depends(get_db)) -> ImageDB:
     return get_image_func(db, image_id)
+
+
+@router.post("/{image_id}")
+def transform_image(image_id: int, choice: int, db: Session = Depends(get_db),
+                    current_user: User = Depends(auth_service.get_current_user)):
+    return get_transformation_func(db, choice, image_id, current_user)

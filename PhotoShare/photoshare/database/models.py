@@ -153,33 +153,33 @@ class User(Base):
 # Base.metadata.create_all(bind=engine)
 
 
-from photoshare.database.db import test_session
+# from photoshare.database.db import test_session
 
-user1 = User(
-    username='user1',
-    email='dffdfdf@fdf.dfpdf',
-    password='password1',
-    role='user'
-)
+# user1 = User(
+#     username='user1',
+#     email='dffdfdf@fdf.dfpdf',
+#     password='password1',
+#     role='user'
+# )
 
-image1 = Image(
-    url='https://www.example.com/image1.jpg',
-    description='Image 1 description',
-    user_id=1
-)
-image2 = Image(
-    url='https://www.example.com/image2.jpg',
-    description='Image 2 description',
-    user_id=1
-)
+# image1 = Image(
+#     url='https://www.example.com/image1.jpg',
+#     description='Image 1 description',
+#     user_id=1
+# )
+# image2 = Image(
+#     url='https://www.example.com/image2.jpg',
+#     description='Image 2 description',
+#     user_id=1
+# )
 
-image1.update_like(user1, 'add')
-image2.update_dislike(user1, 'add')
+# image1.update_like(user1, 'add')
+# image2.update_dislike(user1, 'add')
 
-test_session.add(user1)
-test_session.commit()
-test_session.add_all([image1, image2])
-test_session.commit()
+# test_session.add(user1)
+# test_session.commit()
+# test_session.add_all([image1, image2])
+# test_session.commit()
 
 """
 from photoshare.database.db import test_session
