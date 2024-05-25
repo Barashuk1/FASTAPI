@@ -1,14 +1,13 @@
 from pydantic_settings import BaseSettings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Settings(BaseSettings):
     """
     Settings class defining configuration options for the application.
 
     Attributes:
-    - POSTGRES_DB (str): The name of the PostgreSQL database.
-    - POSTGRES_USER (str): The username for accessing the PostgreSQL database.
-    - POSTGRES_PASSWORD (str): The password for accessing the PostgreSQL database.
-    - POSTGRES_PORT (int): The port number for the PostgreSQL database.
     - sqlalchemy_database_url (str): The URL for connecting to the PostgreSQL database.
     - secret_key (str): The secret key used for cryptographic operations.
     - algorithm (str): The algorithm used for cryptographic operations.
@@ -26,11 +25,8 @@ class Settings(BaseSettings):
     Configuration:
     - env_file (str): The path to the environment file containing configuration variables (default: ".env").
     - env_file_encoding (str): The encoding of the environment file (default: "utf-8").
+    - extra (str): The behavior for extra fields in the environment file (default: "ignore").
     """
-    POSTGRES_DB: str
-    POSTGRES_USER: str
-    POSTGRES_PASSWORD: str
-    POSTGRES_PORT: int
     sqlalchemy_database_url: str
     secret_key: str
     algorithm: str
@@ -41,6 +37,7 @@ class Settings(BaseSettings):
     mail_server: str
     redis_host: str
     redis_port: int
+    redis_password: str
     cloudinary_name: str
     cloudinary_api_key: str
     cloudinary_api_secret: str
@@ -48,5 +45,6 @@ class Settings(BaseSettings):
     class ConfigDict:
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = 'ignore'
 
 settings = Settings()
