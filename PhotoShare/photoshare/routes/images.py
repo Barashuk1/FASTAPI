@@ -13,19 +13,21 @@ templates = Jinja2Templates(directory="photoshare/templates")
 
 
 @router.post("/add")
-def load_image(image: ImageBase, db: Session = Depends(get_db),
+def load_image(tags: List[str], image: ImageModel, db: Session = Depends(get_db),
                       current_user: User = Depends(auth_service.get_current_user)) -> ImageDB:
-    return load_image_func(db, image, current_user)
+    if len(tags) > 5:
+        raise HTTPException(status_code=400, detail="Maximum 5 tags allowed per image")
+    return load_image_func(db, image, tags, current_user)
 
 
-@router.post("/add_from_pc")
+@router.post("/add_from_pc", response_model=ImageDB)
 def load_image_from_pc(
     description: str,
-    file: UploadFile = File(...),
     db: Session = Depends(get_db),
-    current_user: User = Depends(auth_service.get_current_user)
-):
-    return load_image_from_pc_func(db, description, current_user, file)
+    file: UploadFile = File(...),
+    current_user: User = Depends(auth_service.get_current_user),
+    tags: Optional[str] = None,) -> ImageDB: 
+    return load_image_from_pc_func(db, description, current_user, file, tagsw)
 
 @router.get("/url/{url_view}")
 def get_image_url(url_view: str, db: Session = Depends(get_db)) -> ImageDB:

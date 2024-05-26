@@ -1,9 +1,9 @@
 from photoshare.database.db import Session
-from photoshare.database.models import Image, User
+from photoshare.database.models import Image, User, Tag
 from photoshare.schemas import *
 from fastapi import HTTPException
 from fastapi import FastAPI, File, UploadFile
-
+from sqlalchemy import and_
 
 import cloudinary
 import cloudinary.uploader
@@ -15,27 +15,58 @@ from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 from qrcode.image.styledpil import StyledPilImage
 
 cloudinary.config(
-    cloud_name='str',
-    api_key='str',
-    api_secret='str'
+    cloud_name='dxnanxzgt',
+    api_key='624561594715217',
+    api_secret='SuZE2oky-Kq8xEEt53G1h9zS-pg'
 )
 
 
 
-def load_image_func(db: Session, image: ImageBase, user: User) -> ImageDB:
+def load_image_func(db: Session, image: ImageBase, tags: List[str], user: User) -> ImageDB:
+    image_tags = []
+    for tag_name in tags:
+        # Перевіряємо, чи існує тег з такою назвою
+        tag = db.query(Tag).filter(Tag.name == tag_name).first()
+        if not tag:
+            # Якщо тега не існує, створюємо новий
+            tag = Tag(name=tag_name)
+            db.add(tag)
+            db.commit()
+            db.refresh(tag)
+        image_tags.append(tag)
+
+
     db_image = Image(**image.model_dump())
     db_image.user_id = user.id
+    db_image.tags = image_tags
     db.add(db_image)
     db.commit()
     db.refresh(db_image)
     return db_image
 
 
-def load_image_from_pc_func(db: Session, description, user: User, file: UploadFile = File()):
+def load_image_from_pc_func( db: Session, description, user: User, file: UploadFile = File(), tags: Optional[str] = None):
     upload_result = cloudinary.uploader.upload(
     file.file,
     overwrite=True
 )
+    if tags:
+        try:
+            tags_list = tags.split(",") 
+            image_tags = []
+            for tag_name in tags_list:
+                # Перевіряємо, чи існує тег з такою назвою
+                tag = db.query(Tag).filter(Tag.name == tag_name).first()
+                if not tag:
+                    # Якщо тега не існує, створюємо новий
+                    tag = Tag(name=tag_name.strip())
+                    db.add(tag)
+                    db.commit()
+                    db.refresh(tag)
+                image_tags.append(tag)
+        except:
+            raise HTTPException(status_code=400, detail="Uncorrect fromat of tags")
+
     image_url = upload_result["url"]
     print("image_url", image_url)
     new_image = Image()
@@ -43,16 +74,14 @@ def load_image_from_pc_func(db: Session, description, user: User, file: UploadFi
     new_image.description = description
     new_image.created_at = datetime.now()
     new_image.user_id = user.id
+    if tags:
+        new_image.tags = image_tags
     db.add(new_image)
     db.commit()
     db.refresh(new_image)
 
     return new_image
    
-
-
-
-
 
 def delete_image_func(db: Session, image_id: int, user: User) -> ImageDB:
     if user.role == "admin":
@@ -131,7 +160,7 @@ def get_transformation_func(db: Session, choice: int, image_id: int, user: User)
                 status_code=400, detail="Wrong choice. Enter 1, 2 or 3.")
 
     transformation = transform(choice)
-    pattern = r"/([^/]+)\.png$"
+    pattern = r"/([^/]+)\.(png|jpg|jpeg|gif)$"
     match = re.search(pattern, db_image.url)
     id = match.group(1)
     transformed_image_url = CloudinaryImage(

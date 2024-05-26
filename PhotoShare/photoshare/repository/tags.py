@@ -16,7 +16,7 @@ async def get_tag(tag_id: int, db: Session) -> Tag:
 
 async def create_tag(body: TagModel, db: Session) -> Tag:
     if db.query(Tag).filter(Tag.name == body.name).first():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Tag not found")
+        raise HTTPException(status_code=400, detail="Tag already created")
     tag = Tag(name=body.name)
     db.add(tag)
     db.commit()

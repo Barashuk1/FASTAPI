@@ -18,7 +18,12 @@ class ImageBase(BaseModel):
     created_at: datetime
 
 class ImageModel(ImageBase):
-    tags: List[int]
+    tags: Optional[str] = None
+
+    class Config:
+        max_tags = 5
+
+
 
 class ImageDB(ImageBase):
     id: int
