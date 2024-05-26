@@ -1,6 +1,7 @@
 from photoshare.database.db import Session
 from photoshare.database.models import Image, User, Tag
 from photoshare.schemas import *
+from photoshare.conf.config import settings
 from fastapi import HTTPException
 from fastapi import FastAPI, File, UploadFile
 from sqlalchemy import and_
@@ -15,9 +16,10 @@ from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 from qrcode.image.styledpil import StyledPilImage
 
 cloudinary.config(
-    cloud_name='dxnanxzgt',
-    api_key='624561594715217',
-    api_secret='SuZE2oky-Kq8xEEt53G1h9zS-pg'
+
+    cloud_name=settings.cloudinary_name,
+    api_key=settings.cloudinary_api_key,
+    api_secret=settings.cloudinary_api_secret
 )
 
 

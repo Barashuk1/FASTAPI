@@ -149,8 +149,9 @@ class User(Base):
     is_active: Mapped[bool] = mapped_column(default=True)
     refresh_token: Mapped[str | None]
 
-# Base.metadata.drop_all(bind=engine, checkfirst=False, cascade=True)
-# Base.metadata.create_all(bind=engine)
+# Base.metadata.drop_all(bind=engine)
+Base.metadata.create_all(bind=engine)
+
 
 
 
