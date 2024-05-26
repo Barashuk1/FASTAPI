@@ -3,7 +3,7 @@ from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from photoshare.routes import images, tags, auth, comment, users
 import uvicorn
-# from photoshare.conf.config import settings
+from photoshare.conf.config import settings
 
 from photoshare.database.db import Session, get_db
 from fastapi.templating import Jinja2Templates
@@ -39,15 +39,19 @@ templates = Jinja2Templates(directory="photoshare/services/templates")
 
 # @app.on_event("startup")
 # async def startup():
-#     r = await redis.Redis(host=settings.redis_host, port=settings.redis_port, db=0, encoding="utf-8",
-#                           decode_responses=True)
+#     r = await redis.Redis(
+#         host=settings.redis_host,
+#         port=settings.redis_port,
+#         password=settings.redis_password,
+#         db=0, encoding="utf-8", decode_responses=True
+#     )
 #     await FastAPILimiter.init(r)
 
 # @app.get("/")
 # def read_root():
 #     """
 #     The read_root function returns a dictionary with the key 'message' and
-#     value &quot;Contact manager API&quot;.
+#     value &quot;Wellcome to PhotoShare API!&quot;.
 
 #     :return: A dictionary
 #     """
