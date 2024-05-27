@@ -35,6 +35,21 @@ image_m2m_user = Table(
 
 
 class Image(Base):
+    """
+    Model for images table
+
+    :param id: int: Image id
+    :param url: str: Image url in Cloudinary
+    :param description: str: Image description
+    :param tags: List[Tag]: Image tags
+    :param comments: List[Comment]: Image comments
+    :param rate: float: Image rate
+    :param url_view: str: Edited image view url
+    :param qr_code_view: str: Edited image QR code view url
+    :param created_at: datetime: Image creation date
+    :param user_id: int: User id
+    :param user: User: User object
+    """
     __tablename__ = "images"
     id: Mapped[int] = mapped_column(primary_key=True)
     url: Mapped[str] = mapped_column(String(255))
@@ -73,13 +88,22 @@ class Image(Base):
 
     @property
     def likes(self):
+        """int: The number of likes for the image"""
         return len(self._likes)
 
     @property
     def dislikes(self):
+        """int: The number of dislikes for the image"""
         return len(self._dislikes)
 
     def update_like(self, user, operation):
+        """
+        Method for updating likes for the image
+
+        :param user: User: User object
+        :param operation: str: Operation type ('add' or 'remove')
+        :return: None
+        """
         if operation == 'add':
             # Перевірка чи користувач не ставив вже лайк на картинку
             if user not in self._likes:
@@ -95,6 +119,13 @@ class Image(Base):
                 self.update_rate()
 
     def update_dislike(self, user, operation):
+        """
+        Method for updating dislikes for the image
+
+        :param user: User: User object
+        :param operation: str: Operation type ('add' or 'remove')
+        :return: None
+        """
         if operation == 'add':
             if user not in self._dislikes:
                 if user in self._likes:
@@ -108,6 +139,7 @@ class Image(Base):
     # Автоматично оновлює рейтинг коли змінюється кількість лайків або
     # дизлайків через методи update_like та update_dislike
     def update_rate(self):
+        """Method for updating image rate"""
         total_amount = self.likes + self.dislikes
 
         if total_amount == 0:
@@ -117,6 +149,12 @@ class Image(Base):
 
 
 class Tag(Base):
+    """
+    Method for creating a tag model
+
+    :param id: int: Tag id
+    :param name: str: Tag name
+    """
     __tablename__ = "tags"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(50), unique=True)
@@ -124,6 +162,17 @@ class Tag(Base):
 
 
 class Comment(Base):
+    """
+    Method for creating a comment model
+
+    :param id: int: Comment id
+    :param text: str: Comment text
+    :param created_at: datetime: Comment creation date
+    :param updated_at: datetime: Comment update date
+    :param image_id: int: Image id
+    :param user_id: int: User id
+    :param user: User: User object
+    """
     __tablename__ = "comments"
     id: Mapped[int] = mapped_column(primary_key=True)
     text: Mapped[str] = mapped_column(String(255))
@@ -139,6 +188,18 @@ class Comment(Base):
 
 
 class User(Base):
+    """
+    Model for users table
+
+    :param id: int: User id
+    :param username: str: User username
+    :param email: str: User email
+    :param password: str: User password
+    :param role: str: User role
+    :param created_at: datetime: User creation date
+    :param is_active: bool: User active status
+    :param refresh_token: str: User refresh token, nullable
+    """
     __tablename__ = "users"
     id: Mapped[int] = mapped_column(primary_key=True)
     username: Mapped[str] = mapped_column(String(100))

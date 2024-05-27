@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Welcome to PhotoShare’s documentation! &#8212; PhotoShare  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/nature.css?v=0f882399" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PhotoShare  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to PhotoShare’s documentation!</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="welcome-to-photoshare-s-documentation">
+<h1>Welcome to PhotoShare’s documentation!<a class="headerlink" href="#welcome-to-photoshare-s-documentation" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="module-main">
+<span id="photoshare-main"></span><h1>PhotoShare main<a class="headerlink" href="#module-main" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="main.main_page">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">main.</span></span><span class="sig-name descname"><span class="pre">main_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#main.main_page" title="Link to this definition">¶</a></dt>
+<dd><p>Main page for the PhotoShare application.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></span>) – The request object.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The main page</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.database.db">
+<span id="photoshare-database-db"></span><h1>PhotoShare database db<a class="headerlink" href="#module-photoshare.database.db" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.database.db.get_db">
+<span class="sig-prename descclassname"><span class="pre">photoshare.database.db.</span></span><span class="sig-name descname"><span class="pre">get_db</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.db.get_db" title="Link to this definition">¶</a></dt>
+<dd><p>The get_db function opens a new database connection if there is none yet
+for the current application context.
+It also binds the session to the current context so that you don’t have to
+use db.session in each view function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A generator object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.database.models">
+<span id="photoshare-database-models"></span><h1>PhotoShare database models<a class="headerlink" href="#module-photoshare.database.models" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.database.models.Comment">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.database.models.</span></span><span class="sig-name descname"><span class="pre">Comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Comment" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Method for creating a comment model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – int: Comment id</p></li>
+<li><p><strong>text</strong> – str: Comment text</p></li>
+<li><p><strong>created_at</strong> – datetime: Comment creation date</p></li>
+<li><p><strong>updated_at</strong> – datetime: Comment update date</p></li>
+<li><p><strong>image_id</strong> – int: Image id</p></li>
+<li><p><strong>user_id</strong> – int: User id</p></li>
+<li><p><strong>user</strong> – User: User object</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.database.models.Image">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.database.models.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Image" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Model for images table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – int: Image id</p></li>
+<li><p><strong>url</strong> – str: Image url in Cloudinary</p></li>
+<li><p><strong>description</strong> – str: Image description</p></li>
+<li><p><strong>tags</strong> – List[Tag]: Image tags</p></li>
+<li><p><strong>comments</strong> – List[Comment]: Image comments</p></li>
+<li><p><strong>rate</strong> – float: Image rate</p></li>
+<li><p><strong>url_view</strong> – str: Edited image view url</p></li>
+<li><p><strong>qr_code_view</strong> – str: Edited image QR code view url</p></li>
+<li><p><strong>created_at</strong> – datetime: Image creation date</p></li>
+<li><p><strong>user_id</strong> – int: User id</p></li>
+<li><p><strong>user</strong> – User: User object</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="photoshare.database.models.Image.dislikes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dislikes</span></span><a class="headerlink" href="#photoshare.database.models.Image.dislikes" title="Link to this definition">¶</a></dt>
+<dd><p>int: The number of dislikes for the image</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="photoshare.database.models.Image.likes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">likes</span></span><a class="headerlink" href="#photoshare.database.models.Image.likes" title="Link to this definition">¶</a></dt>
+<dd><p>int: The number of likes for the image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.database.models.Image.update_dislike">
+<span class="sig-name descname"><span class="pre">update_dislike</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Image.update_dislike" title="Link to this definition">¶</a></dt>
+<dd><p>Method for updating dislikes for the image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – User: User object</p></li>
+<li><p><strong>operation</strong> – str: Operation type (‘add’ or ‘remove’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.database.models.Image.update_like">
+<span class="sig-name descname"><span class="pre">update_like</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">operation</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Image.update_like" title="Link to this definition">¶</a></dt>
+<dd><p>Method for updating likes for the image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> – User: User object</p></li>
+<li><p><strong>operation</strong> – str: Operation type (‘add’ or ‘remove’)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.database.models.Image.update_rate">
+<span class="sig-name descname"><span class="pre">update_rate</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Image.update_rate" title="Link to this definition">¶</a></dt>
+<dd><p>Method for updating image rate</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.database.models.Tag">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.database.models.</span></span><span class="sig-name descname"><span class="pre">Tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.Tag" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Method for creating a tag model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – int: Tag id</p></li>
+<li><p><strong>name</strong> – str: Tag name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.database.models.User">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.database.models.</span></span><span class="sig-name descname"><span class="pre">User</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.database.models.User" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Model for users table</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> – int: User id</p></li>
+<li><p><strong>username</strong> – str: User username</p></li>
+<li><p><strong>email</strong> – str: User email</p></li>
+<li><p><strong>password</strong> – str: User password</p></li>
+<li><p><strong>role</strong> – str: User role</p></li>
+<li><p><strong>created_at</strong> – datetime: User creation date</p></li>
+<li><p><strong>is_active</strong> – bool: User active status</p></li>
+<li><p><strong>refresh_token</strong> – str: User refresh token, nullable</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.repository.comment">
+<span id="photoshare-repository-comment"></span><h1>PhotoShare repository comment<a class="headerlink" href="#module-photoshare.repository.comment" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.comment.create_comment_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.comment.</span></span><span class="sig-name descname"><span class="pre">create_comment_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.comment.create_comment_func" title="Link to this definition">¶</a></dt>
+<dd><p>The create_comment_func function creates a new comment in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Identify the image to which the comment is being added</p></li>
+<li><p><strong>comment</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.CommentCreate" title="photoshare.schemas.CommentCreate"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentCreate</span></code></a></span>) – Create a new comment</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Access the database</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – Get the user_id of the comment creator</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Comment" title="photoshare.database.models.Comment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Comment</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A Comment object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.comment.delete_comment_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.comment.</span></span><span class="sig-name descname"><span class="pre">delete_comment_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.comment.delete_comment_func" title="Link to this definition">¶</a></dt>
+<dd><p>The delete_comment_func function deletes a comment from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Specify the id of the comment to be deleted</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Access the database</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – Check if the user has permission to delete a comment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the user does not have permission to delete the comment</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A dictionary <code class="docutils literal notranslate"><span class="pre">{'detail':</span> <span class="pre">'Comment</span> <span class="pre">deleted</span> <span class="pre">successfully'}</span></code> if comment is deleted successfully</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.comment.edit_comment_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.comment.</span></span><span class="sig-name descname"><span class="pre">edit_comment_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_update</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.comment.edit_comment_func" title="Link to this definition">¶</a></dt>
+<dd><p>The edit_comment_func function allows a user to edit their own comment.
+The function takes in the comment_id, which is the id of the comment that
+will be edited, and a CommentCreate object containing information about
+what text should replace the old text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Identify the comment that is to be edited</p></li>
+<li><p><strong>comment_update</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.CommentCreate" title="photoshare.schemas.CommentCreate"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentCreate</span></code></a></span>) – Update the comment</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Access the database</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – Get the user id from the database</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Comment" title="photoshare.database.models.Comment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Comment</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The edited comment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.comment.get_comments_by_photo">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.comment.</span></span><span class="sig-name descname"><span class="pre">get_comments_by_photo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.comment.get_comments_by_photo" title="Link to this definition">¶</a></dt>
+<dd><p>The get_comments_by_photo function returns all comments associated with a
+given photo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Pass in the database session</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Filter the comments by photo_id</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#photoshare.database.models.Comment" title="photoshare.database.models.Comment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Comment</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of Comment objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.comment.read_comments_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.comment.</span></span><span class="sig-name descname"><span class="pre">read_comments_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.comment.read_comments_func" title="Link to this definition">¶</a></dt>
+<dd><p>The read_comments_func function returns all comments for a given image_id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Specify the image id of the image we want to get comments for</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Pass the database session to the function</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#photoshare.database.models.Comment" title="photoshare.database.models.Comment"><code class="xref py py-class docutils literal notranslate"><span class="pre">Comment</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of comments</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.repository.images">
+<span id="photoshare-repository-images"></span><h1>PhotoShare repository images<a class="headerlink" href="#module-photoshare.repository.images" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.delete_image_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">delete_image_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.delete_image_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to delete image from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the image</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – if image not found or user doesn’t have permission to delete it</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.generate_qr_code">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">generate_qr_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.generate_qr_code" title="Link to this definition">¶</a></dt>
+<dd><p>Function to generate QR code</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>image_url</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – url of the image</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>url of the QR code</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.get_image_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">get_image_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.get_image_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get image by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.get_image_url_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.get_image_url_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get image by url_view</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>url_view</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – url_view of the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.get_transformation_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">get_transformation_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.get_transformation_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get transformation of the image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>choice</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – choice of transformation</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the image</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.load_image_from_pc_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">load_image_from_pc_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">File(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.load_image_from_pc_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to load image from PC to the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>description</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – description of the image</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+<li><p><strong>file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">UploadFile</span></code></span>) – UploadFile object</p></li>
+<li><p><strong>tags</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – list of tags</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – if tags have uncorrect format</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.load_image_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">load_image_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.load_image_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to load image to the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageBase" title="photoshare.schemas.ImageBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageBase</span></code></a></span>) – ImageBase object</p></li>
+<li><p><strong>tags</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – list of tags</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.rate_images_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">rate_images_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.rate_images_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get images sorted by rate</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>order</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – order of sorting</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of ImageDB objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.update_image_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">update_image_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.update_image_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to update image in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the image</p></li>
+<li><p><strong>image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageUpdate" title="photoshare.schemas.ImageUpdate"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageUpdate</span></code></a></span>) – ImageUpdate object</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – if image not found or user doesn’t have permission to update it</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ImageDB object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.repository.tags">
+<span id="photoshare-repository-tags"></span><h1>PhotoShare repository tags<a class="headerlink" href="#module-photoshare.repository.tags" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.tags.create_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.tags.</span></span><span class="sig-name descname"><span class="pre">create_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.tags.create_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Function to create tag in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.TagModel" title="photoshare.schemas.TagModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TagModel</span></code></a></span>) – TagModel object</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Tag" title="photoshare.database.models.Tag"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tag object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.tags.get_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.tags.</span></span><span class="sig-name descname"><span class="pre">get_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.tags.get_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get tag by id from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – tag id</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Tag" title="photoshare.database.models.Tag"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tag object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.tags.get_tags">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.tags.</span></span><span class="sig-name descname"><span class="pre">get_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.tags.get_tags" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get tags from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – offset</p></li>
+<li><p><strong>limit</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – limit</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference internal" href="#photoshare.database.models.Tag" title="photoshare.database.models.Tag"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list of tags</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.tags.remove_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.tags.</span></span><span class="sig-name descname"><span class="pre">remove_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.tags.remove_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Function to remove tag from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – tag id</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Tag" title="photoshare.database.models.Tag"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tag object or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.tags.update_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.tags.</span></span><span class="sig-name descname"><span class="pre">update_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.tags.update_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Function to update tag in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – tag id</p></li>
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.TagModel" title="photoshare.schemas.TagModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TagModel</span></code></a></span>) – TagModel object</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.Tag" title="photoshare.database.models.Tag"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tag</span></code></a> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tag object or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.repository.users">
+<span id="photoshare-repository-users"></span><h1>PhotoShare repository users<a class="headerlink" href="#module-photoshare.repository.users" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.create_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">create_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.create_user" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new user in the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.UserModel" title="photoshare.schemas.UserModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserModel</span></code></a></span>) – The user data.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The created user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.get_user_by_email">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">get_user_by_email</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.get_user_by_email" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve a user by email from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>email</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The email address of the user to retrieve.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The retrieved user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.get_user_by_username">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">get_user_by_username</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.get_user_by_username" title="Link to this definition">¶</a></dt>
+<dd><p>Function to get user by username from the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>username</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – username</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code>[<a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code>] | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>User object and number of images uploaded by the user or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.set_user_active_status">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">set_user_active_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_active</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.set_user_active_status" title="Link to this definition">¶</a></dt>
+<dd><p>Function to set user active status in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>user_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the user</p></li>
+<li><p><strong>is_active</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span>) – new active status</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>User object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.update_token">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.update_token" title="Link to this definition">¶</a></dt>
+<dd><p>Update the refresh token for a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user whose token is being updated.</p></li>
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>) – The new refresh token, or None if no token is provided.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.update_user_info">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_user_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_update</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.update_user_info" title="Link to this definition">¶</a></dt>
+<dd><p>Function to update user info in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>user_update</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.UserUpdate" title="photoshare.schemas.UserUpdate"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserUpdate</span></code></a></span>) – UserUpdate object</p></li>
+<li><p><strong>user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – User object</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – if user not found</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>User object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.users.update_user_role">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.repository.users.</span></span><span class="sig-name descname"><span class="pre">update_user_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.users.update_user_role" title="Link to this definition">¶</a></dt>
+<dd><p>Function to update user role in the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>user_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – id of the user</p></li>
+<li><p><strong>role</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – new role</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>User object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.routes.auth">
+<span id="photoshare-routes-auth"></span><h1>PhotoShare routes auth<a class="headerlink" href="#module-photoshare.routes.auth" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.auth.login">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.auth.</span></span><span class="sig-name descname"><span class="pre">login</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(NoneType)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.auth.login" title="Link to this definition">¶</a></dt>
+<dd><p>Endpoint to authenticate and log in a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OAuth2PasswordRequestForm</span></code></span>) – The login form data.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session. Defaults to Depends(get_db).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the email or password is invalid or user is inactive.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The response containing the access and refresh tokens and token type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.auth.refresh_token">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.auth.</span></span><span class="sig-name descname"><span class="pre">refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">credentials</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Security(HTTPBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.auth.refresh_token" title="Link to this definition">¶</a></dt>
+<dd><p>Endpoint to refresh an access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>credentials</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPAuthorizationCredentials</span></code></span>) – The HTTP authorization credentials.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session. Defaults to Depends(get_db).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response containing the new access and refresh tokens and token type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.auth.signup">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.auth.</span></span><span class="sig-name descname"><span class="pre">signup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_tasks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.auth.signup" title="Link to this definition">¶</a></dt>
+<dd><p>Endpoint to sign up a new user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.UserModel" title="photoshare.schemas.UserModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserModel</span></code></a></span>) – The user data.</p></li>
+<li><p><strong>background_tasks</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">BackgroundTasks</span></code></span>) – Background tasks to be executed.</p></li>
+<li><p><strong>request</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></span>) – The request object.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session. Defaults to Depends(get_db).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response containing the created user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.routes.comment">
+<span id="photoshare-routes-comment"></span><h1>PhotoShare routes comment<a class="headerlink" href="#module-photoshare.routes.comment" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.comment.create_comment">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.comment.</span></span><span class="sig-name descname"><span class="pre">create_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.comment.create_comment" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new comment on an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image to comment on</p></li>
+<li><p><strong>comment</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.CommentCreate" title="photoshare.schemas.CommentCreate"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentCreate</span></code></a></span>) – The comment to be created</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user creating the comment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created comment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.comment.delete_comment">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.comment.</span></span><span class="sig-name descname"><span class="pre">delete_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(roles_verifier)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.comment.delete_comment" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a comment on an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the comment to delete</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user deleting the comment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The deleted comment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.comment.edit_comment">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.comment.</span></span><span class="sig-name descname"><span class="pre">edit_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comment_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment_update</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.comment.edit_comment" title="Link to this definition">¶</a></dt>
+<dd><p>Edit a comment on an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comment_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the comment to edit</p></li>
+<li><p><strong>comment_update</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.CommentCreate" title="photoshare.schemas.CommentCreate"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentCreate</span></code></a></span>) – The updated comment</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user editing the comment</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The edited comment</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.comment.read_comments">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.comment.</span></span><span class="sig-name descname"><span class="pre">read_comments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">photo_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.comment.read_comments" title="Link to this definition">¶</a></dt>
+<dd><p>Get all comments on an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>photo_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image to get comments for</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of comments</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.routes.images">
+<span id="photoshare-routes-images"></span><h1>PhotoShare routes images<a class="headerlink" href="#module-photoshare.routes.images" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.delete_image">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">delete_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.delete_image" title="Link to this definition">¶</a></dt>
+<dd><p>Delete an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image to delete</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user deleting the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The deleted image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.get_image">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">get_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.get_image" title="Link to this definition">¶</a></dt>
+<dd><p>Get an image by its ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.get_image_url">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url_view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.get_image_url" title="Link to this definition">¶</a></dt>
+<dd><p>Get an image by its URL</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url_view</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The URL of the image</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.load_image">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">load_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tags</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.load_image" title="Link to this definition">¶</a></dt>
+<dd><p>Load an image to the database</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tags</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The tags to be associated with the image</p></li>
+<li><p><strong>image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageModel" title="photoshare.schemas.ImageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageModel</span></code></a></span>) – The image data</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user uploading the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If more than 5 tags are provided</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.load_image_from_pc">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">load_image_from_pc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">File(PydanticUndefined)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.load_image_from_pc" title="Link to this definition">¶</a></dt>
+<dd><p>Load an image to the database from a file on the local machine</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The description of the image</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>file</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">UploadFile</span></code></span>) – The image file</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user uploading the image</p></li>
+<li><p><strong>tags</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]</span>) – The tags to be associated with the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The created image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.rate_images">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">rate_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'asc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.rate_images" title="Link to this definition">¶</a></dt>
+<dd><p>Rate images</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>request</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Request</span></code></span>) – The request</p></li>
+<li><p><strong>order</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The order to display the images in</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rated images</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.transform_image">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">transform_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">choice</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.transform_image" title="Link to this definition">¶</a></dt>
+<dd><p>Transform an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image to transform</p></li>
+<li><p><strong>choice</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The transformation to apply</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user transforming the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The transformed image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.update_image">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">update_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.update_image" title="Link to this definition">¶</a></dt>
+<dd><p>Update an image</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The id of the image to update</p></li>
+<li><p><strong>image</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageUpdate" title="photoshare.schemas.ImageUpdate"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageUpdate</span></code></a></span>) – The updated image</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The user updating the image</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated image</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.routes.tags">
+<span id="photoshare-routes-tags"></span><h1>PhotoShare routes tags<a class="headerlink" href="#module-photoshare.routes.tags" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.tags.create_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.tags.</span></span><span class="sig-name descname"><span class="pre">create_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.tags.create_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new tag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.TagModel" title="photoshare.schemas.TagModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TagModel</span></code></a></span>) – The tag data</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created tag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.tags.read_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.tags.</span></span><span class="sig-name descname"><span class="pre">read_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.tags.read_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Get a tag by ID</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the tag to retrieve</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The tag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.tags.read_tags">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.tags.</span></span><span class="sig-name descname"><span class="pre">read_tags</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.tags.read_tags" title="Link to this definition">¶</a></dt>
+<dd><p>Get all tags</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>skip</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The number of tags to skip</p></li>
+<li><p><strong>limit</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The number of tags to return</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of tags</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.tags.remove_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.tags.</span></span><span class="sig-name descname"><span class="pre">remove_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.tags.remove_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Remove a tag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the tag to remove</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the tag is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The removed tag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.tags.update_tag">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.tags.</span></span><span class="sig-name descname"><span class="pre">update_tag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.tags.update_tag" title="Link to this definition">¶</a></dt>
+<dd><p>Update a tag</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.TagModel" title="photoshare.schemas.TagModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TagModel</span></code></a></span>) – The updated tag data</p></li>
+<li><p><strong>tag_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the tag to update</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the tag is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated tag</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.routes.users">
+<span id="photoshare-routes-users"></span><h1>PhotoShare routes users<a class="headerlink" href="#module-photoshare.routes.users" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.users.ban_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.users.</span></span><span class="sig-name descname"><span class="pre">ban_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_admin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(roles_verifier)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.users.ban_user" title="Link to this definition">¶</a></dt>
+<dd><p>Ban a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the user to ban</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_admin</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The current admin user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the user is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated user</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.users.get_user_profile">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.users.</span></span><span class="sig-name descname"><span class="pre">get_user_profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.users.get_user_profile" title="Link to this definition">¶</a></dt>
+<dd><p>Get a user profile by username</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The username of the user to retrieve</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The user profile</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.users.set_user_role">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.users.</span></span><span class="sig-name descname"><span class="pre">set_user_role</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">role</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_admin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(roles_verifier)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.users.set_user_role" title="Link to this definition">¶</a></dt>
+<dd><p>Set a user role</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the user to update</p></li>
+<li><p><strong>role</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The role to set</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_admin</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The current admin user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the role is invalid</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated user</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.users.unban_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.users.</span></span><span class="sig-name descname"><span class="pre">unban_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_admin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(roles_verifier)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.users.unban_user" title="Link to this definition">¶</a></dt>
+<dd><p>Unban a user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – The ID of the user to unban</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_admin</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The current admin user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the user is not found</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated user</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.users.update_user">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.routes.users.</span></span><span class="sig-name descname"><span class="pre">update_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_user</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_current_user)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.users.update_user" title="Link to this definition">¶</a></dt>
+<dd><p>Update user settings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.schemas.UserModel" title="photoshare.schemas.UserModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">UserModel</span></code></a></span>) – The user data to update</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+<li><p><strong>current_user</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span>) – The current user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the email is already in use</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated user</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-photoshare.services.auth">
+<span id="photoshare-services-auth"></span><h1>PhotoShare services auth<a class="headerlink" href="#module-photoshare.services.auth" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.services.auth.</span></span><span class="sig-name descname"><span class="pre">Auth</span></span><a class="headerlink" href="#photoshare.services.auth.Auth" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class containing authentication related methods.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.ALGORITHM">
+<span class="sig-name descname"><span class="pre">ALGORITHM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'HS256'</span></em><a class="headerlink" href="#photoshare.services.auth.Auth.ALGORITHM" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.SECRET_KEY">
+<span class="sig-name descname"><span class="pre">SECRET_KEY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'secret_key'</span></em><a class="headerlink" href="#photoshare.services.auth.Auth.SECRET_KEY" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.create_access_token">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_access_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.create_access_token" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a new access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span>) – The payload data to encode in the token.</p></li>
+<li><p><strong>expires_delta</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Optional expiration time for the token in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The encoded access token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.create_refresh_token">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expires_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.create_refresh_token" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a new refresh token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></span>) – The payload data to encode in the token.</p></li>
+<li><p><strong>expires_delta</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code>]</span>) – Optional expiration time for the token in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The encoded refresh token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.decode_refresh_token">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">decode_refresh_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">refresh_token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.decode_refresh_token" title="Link to this definition">¶</a></dt>
+<dd><p>Decodes the provided refresh token and retrieves the email from its payload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>refresh_token</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The refresh token to decode.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the token cannot be validated or the scope is invalid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The email address extracted from the token payload.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.get_current_user">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_current_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(OAuth2PasswordBearer)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.get_current_user" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieves the current user based on the provided access token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The access token.</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – The database session.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – If the token cannot be validated or the user does not exist.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#photoshare.database.models.User" title="photoshare.database.models.User"><code class="xref py py-class docutils literal notranslate"><span class="pre">User</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The current user.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.get_current_user_roles">
+<span class="sig-name descname"><span class="pre">get_current_user_roles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">required_roles</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.get_current_user_roles" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a dependency that verifies if the current user has the required roles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>required_roles</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></span>) – The list of required roles.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">callable</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dependency function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.get_password_hash">
+<span class="sig-name descname"><span class="pre">get_password_hash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.get_password_hash" title="Link to this definition">¶</a></dt>
+<dd><p>Generates the hash for the provided password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>password</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The password to hash.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hashed password.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.oauth2_scheme">
+<span class="sig-name descname"><span class="pre">oauth2_scheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;fastapi.security.oauth2.OAuth2PasswordBearer</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#photoshare.services.auth.Auth.oauth2_scheme" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.pwd_context">
+<span class="sig-name descname"><span class="pre">pwd_context</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;CryptContext&gt;</span></em><a class="headerlink" href="#photoshare.services.auth.Auth.pwd_context" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="photoshare.services.auth.Auth.verify_password">
+<span class="sig-name descname"><span class="pre">verify_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plain_password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hashed_password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.services.auth.Auth.verify_password" title="Link to this definition">¶</a></dt>
+<dd><p>Verifies if the provided plain password matches the hashed password.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plain_password</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The plain password.</p></li>
+<li><p><strong>hashed_password</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The hashed password.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if passwords match, False otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-photoshare.schemas">
+<span id="photoshare-schemas"></span><h1>PhotoShare schemas<a class="headerlink" href="#module-photoshare.schemas" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.CommentBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">CommentBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.CommentBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing comment data used for comment creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – The text of the comment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.CommentCreate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">CommentCreate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.CommentCreate" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.CommentBase" title="photoshare.schemas.CommentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentBase</span></code></a></p>
+<p>Pydantic model representing comment data used for comment creation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.CommentResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">CommentResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.CommentResponse" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.CommentBase" title="photoshare.schemas.CommentBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">CommentBase</span></code></a></p>
+<p>Pydantic model representing the response after comment creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The unique identifier of the comment.</p></li>
+<li><p><strong>image_id</strong> (<em>int</em>) – The unique identifier of the image.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the comment was created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.CommentSchema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">CommentSchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.CommentSchema" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing comment data retrieved from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image_id</strong> (<em>int</em>) – The unique identifier of the image.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the comment was created.</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – The text of the comment.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.ImageBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing image data used for image creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL of the image.</p></li>
+<li><p><strong>description</strong> (<em>str</em>) – The description of the image.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the image was created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.ImageCreateFromPC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageCreateFromPC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageCreateFromPC" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing image data used for image creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>description</strong> (<em>str</em>) – The description of the image.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the image was created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.ImageDB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageDB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageDB" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.ImageBase" title="photoshare.schemas.ImageBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageBase</span></code></a></p>
+<p>Pydantic model representing image data retrieved from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The unique identifier of the image.</p></li>
+<li><p><strong>likes</strong> (<em>int</em>) – The number of likes of the image.</p></li>
+<li><p><strong>dislikes</strong> (<em>int</em>) – The number of dislikes of the image.</p></li>
+<li><p><strong>rate</strong> (<em>float</em>) – The rating of the image.</p></li>
+<li><p><strong>url_view</strong> (<em>str</em>) – The URL of the image view.</p></li>
+<li><p><strong>qr_code_view</strong> (<em>str</em>) – The QR code of the image view.</p></li>
+<li><p><strong>tags</strong> (<em>List</em><em>[</em><a class="reference internal" href="#photoshare.schemas.TagResponse" title="photoshare.schemas.TagResponse"><em>TagResponse</em></a><em>]</em>) – The tags of the image.</p></li>
+<li><p><strong>user_id</strong> (<em>int</em>) – The unique identifier of the user who uploaded the image.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.ImageModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.ImageBase" title="photoshare.schemas.ImageBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageBase</span></code></a></p>
+<p>Pydantic model representing image data used for image creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tags</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The tags of the image (max length: 5).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.ImageUpdate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageUpdate" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.ImageModel" title="photoshare.schemas.ImageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageModel</span></code></a></p>
+<p>Pydantic model representing image data used for image update.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>description</strong> (<em>str</em>) – The description of the image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.TagModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">TagModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.TagModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing tag data used for tag creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – The name of the tag (max length: 25).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.TagResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">TagResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.TagResponse" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.TagModel" title="photoshare.schemas.TagModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">TagModel</span></code></a></p>
+<p>Pydantic model representing the response after tag creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>int</em>) – The unique identifier of the tag.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.TokenModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">TokenModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.TokenModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing the token data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>access_token</strong> (<em>str</em>) – The access token.</p></li>
+<li><p><strong>refresh_token</strong> (<em>str</em>) – The refresh token.</p></li>
+<li><p><strong>token_type</strong> (<em>str</em>) – The token type.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.UserDb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">UserDb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.UserDb" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing user data retrieved from the database.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The unique identifier of the user.</p></li>
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user.</p></li>
+<li><p><strong>email</strong> (<em>str</em>) – The email address of the user.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the user was created.</p></li>
+<li><p><strong>role</strong> (<em>str</em>) – The role of the user.</p></li>
+<li><p><strong>is_active</strong> (<em>bool</em>) – The status of the user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.UserModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">UserModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.UserModel" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing user data used for user creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user (min length: 5, max length: 16).</p></li>
+<li><p><strong>email</strong> (<em>str</em>) – The email address of the user.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – The password of the user (min length: 6, max length: 10).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.UserProfile">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">UserProfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.UserProfile" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing the user profile data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>int</em>) – The unique identifier of the user.</p></li>
+<li><p><strong>username</strong> (<em>str</em>) – The username of the user.</p></li>
+<li><p><strong>email</strong> (<em>str</em>) – The email address of the user.</p></li>
+<li><p><strong>created_at</strong> (<em>datetime</em>) – The timestamp when the user was created.</p></li>
+<li><p><strong>images_count</strong> (<em>int</em>) – The number of images uploaded by the user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.UserResponse">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">UserResponse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.UserResponse" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing the response after user creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>user</strong> (<a class="reference internal" href="#photoshare.schemas.UserDb" title="photoshare.schemas.UserDb"><em>UserDb</em></a>) – The user data.</p></li>
+<li><p><strong>detail</strong> (<em>str</em>) – The detail of the response.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="photoshare.schemas.UserUpdate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">UserUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.UserUpdate" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>Pydantic model representing user data used for user update.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The username of the user.</p></li>
+<li><p><strong>email</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The email address of the user.</p></li>
+<li><p><strong>password</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em>) – The password of the user.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="#">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Welcome to PhotoShare’s documentation!</a></li>
+<li><a class="reference internal" href="#module-main">PhotoShare main</a><ul>
+<li><a class="reference internal" href="#main.main_page"><code class="docutils literal notranslate"><span class="pre">main_page()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.database.db">PhotoShare database db</a><ul>
+<li><a class="reference internal" href="#photoshare.database.db.get_db"><code class="docutils literal notranslate"><span class="pre">get_db()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.database.models">PhotoShare database models</a><ul>
+<li><a class="reference internal" href="#photoshare.database.models.Comment"><code class="docutils literal notranslate"><span class="pre">Comment</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.Image"><code class="docutils literal notranslate"><span class="pre">Image</span></code></a><ul>
+<li><a class="reference internal" href="#photoshare.database.models.Image.dislikes"><code class="docutils literal notranslate"><span class="pre">Image.dislikes</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.Image.likes"><code class="docutils literal notranslate"><span class="pre">Image.likes</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.Image.update_dislike"><code class="docutils literal notranslate"><span class="pre">Image.update_dislike()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.Image.update_like"><code class="docutils literal notranslate"><span class="pre">Image.update_like()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.Image.update_rate"><code class="docutils literal notranslate"><span class="pre">Image.update_rate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#photoshare.database.models.Tag"><code class="docutils literal notranslate"><span class="pre">Tag</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.database.models.User"><code class="docutils literal notranslate"><span class="pre">User</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.repository.comment">PhotoShare repository comment</a><ul>
+<li><a class="reference internal" href="#photoshare.repository.comment.create_comment_func"><code class="docutils literal notranslate"><span class="pre">create_comment_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.comment.delete_comment_func"><code class="docutils literal notranslate"><span class="pre">delete_comment_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.comment.edit_comment_func"><code class="docutils literal notranslate"><span class="pre">edit_comment_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.comment.get_comments_by_photo"><code class="docutils literal notranslate"><span class="pre">get_comments_by_photo()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.comment.read_comments_func"><code class="docutils literal notranslate"><span class="pre">read_comments_func()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.repository.images">PhotoShare repository images</a><ul>
+<li><a class="reference internal" href="#photoshare.repository.images.delete_image_func"><code class="docutils literal notranslate"><span class="pre">delete_image_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.generate_qr_code"><code class="docutils literal notranslate"><span class="pre">generate_qr_code()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.get_image_func"><code class="docutils literal notranslate"><span class="pre">get_image_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.get_image_url_func"><code class="docutils literal notranslate"><span class="pre">get_image_url_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.get_transformation_func"><code class="docutils literal notranslate"><span class="pre">get_transformation_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.load_image_from_pc_func"><code class="docutils literal notranslate"><span class="pre">load_image_from_pc_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.load_image_func"><code class="docutils literal notranslate"><span class="pre">load_image_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.rate_images_func"><code class="docutils literal notranslate"><span class="pre">rate_images_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.update_image_func"><code class="docutils literal notranslate"><span class="pre">update_image_func()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.repository.tags">PhotoShare repository tags</a><ul>
+<li><a class="reference internal" href="#photoshare.repository.tags.create_tag"><code class="docutils literal notranslate"><span class="pre">create_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.tags.get_tag"><code class="docutils literal notranslate"><span class="pre">get_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.tags.get_tags"><code class="docutils literal notranslate"><span class="pre">get_tags()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.tags.remove_tag"><code class="docutils literal notranslate"><span class="pre">remove_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.tags.update_tag"><code class="docutils literal notranslate"><span class="pre">update_tag()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.repository.users">PhotoShare repository users</a><ul>
+<li><a class="reference internal" href="#photoshare.repository.users.create_user"><code class="docutils literal notranslate"><span class="pre">create_user()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.get_user_by_email"><code class="docutils literal notranslate"><span class="pre">get_user_by_email()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.get_user_by_username"><code class="docutils literal notranslate"><span class="pre">get_user_by_username()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.set_user_active_status"><code class="docutils literal notranslate"><span class="pre">set_user_active_status()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.update_token"><code class="docutils literal notranslate"><span class="pre">update_token()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.update_user_info"><code class="docutils literal notranslate"><span class="pre">update_user_info()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.users.update_user_role"><code class="docutils literal notranslate"><span class="pre">update_user_role()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.routes.auth">PhotoShare routes auth</a><ul>
+<li><a class="reference internal" href="#photoshare.routes.auth.login"><code class="docutils literal notranslate"><span class="pre">login()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.auth.refresh_token"><code class="docutils literal notranslate"><span class="pre">refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.auth.signup"><code class="docutils literal notranslate"><span class="pre">signup()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.routes.comment">PhotoShare routes comment</a><ul>
+<li><a class="reference internal" href="#photoshare.routes.comment.create_comment"><code class="docutils literal notranslate"><span class="pre">create_comment()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.comment.delete_comment"><code class="docutils literal notranslate"><span class="pre">delete_comment()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.comment.edit_comment"><code class="docutils literal notranslate"><span class="pre">edit_comment()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.comment.read_comments"><code class="docutils literal notranslate"><span class="pre">read_comments()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.routes.images">PhotoShare routes images</a><ul>
+<li><a class="reference internal" href="#photoshare.routes.images.delete_image"><code class="docutils literal notranslate"><span class="pre">delete_image()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.get_image"><code class="docutils literal notranslate"><span class="pre">get_image()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.get_image_url"><code class="docutils literal notranslate"><span class="pre">get_image_url()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.load_image"><code class="docutils literal notranslate"><span class="pre">load_image()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.load_image_from_pc"><code class="docutils literal notranslate"><span class="pre">load_image_from_pc()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.rate_images"><code class="docutils literal notranslate"><span class="pre">rate_images()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.transform_image"><code class="docutils literal notranslate"><span class="pre">transform_image()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.update_image"><code class="docutils literal notranslate"><span class="pre">update_image()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.routes.tags">PhotoShare routes tags</a><ul>
+<li><a class="reference internal" href="#photoshare.routes.tags.create_tag"><code class="docutils literal notranslate"><span class="pre">create_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.tags.read_tag"><code class="docutils literal notranslate"><span class="pre">read_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.tags.read_tags"><code class="docutils literal notranslate"><span class="pre">read_tags()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.tags.remove_tag"><code class="docutils literal notranslate"><span class="pre">remove_tag()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.tags.update_tag"><code class="docutils literal notranslate"><span class="pre">update_tag()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.routes.users">PhotoShare routes users</a><ul>
+<li><a class="reference internal" href="#photoshare.routes.users.ban_user"><code class="docutils literal notranslate"><span class="pre">ban_user()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.users.get_user_profile"><code class="docutils literal notranslate"><span class="pre">get_user_profile()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.users.set_user_role"><code class="docutils literal notranslate"><span class="pre">set_user_role()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.users.unban_user"><code class="docutils literal notranslate"><span class="pre">unban_user()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.users.update_user"><code class="docutils literal notranslate"><span class="pre">update_user()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.services.auth">PhotoShare services auth</a><ul>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth"><code class="docutils literal notranslate"><span class="pre">Auth</span></code></a><ul>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.ALGORITHM"><code class="docutils literal notranslate"><span class="pre">Auth.ALGORITHM</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.SECRET_KEY"><code class="docutils literal notranslate"><span class="pre">Auth.SECRET_KEY</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.create_access_token"><code class="docutils literal notranslate"><span class="pre">Auth.create_access_token()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.create_refresh_token"><code class="docutils literal notranslate"><span class="pre">Auth.create_refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.decode_refresh_token"><code class="docutils literal notranslate"><span class="pre">Auth.decode_refresh_token()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.get_current_user"><code class="docutils literal notranslate"><span class="pre">Auth.get_current_user()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.get_current_user_roles"><code class="docutils literal notranslate"><span class="pre">Auth.get_current_user_roles()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.get_password_hash"><code class="docutils literal notranslate"><span class="pre">Auth.get_password_hash()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.oauth2_scheme"><code class="docutils literal notranslate"><span class="pre">Auth.oauth2_scheme</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.pwd_context"><code class="docutils literal notranslate"><span class="pre">Auth.pwd_context</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.services.auth.Auth.verify_password"><code class="docutils literal notranslate"><span class="pre">Auth.verify_password()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-photoshare.schemas">PhotoShare schemas</a><ul>
+<li><a class="reference internal" href="#photoshare.schemas.CommentBase"><code class="docutils literal notranslate"><span class="pre">CommentBase</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.CommentCreate"><code class="docutils literal notranslate"><span class="pre">CommentCreate</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.CommentResponse"><code class="docutils literal notranslate"><span class="pre">CommentResponse</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.CommentSchema"><code class="docutils literal notranslate"><span class="pre">CommentSchema</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.ImageBase"><code class="docutils literal notranslate"><span class="pre">ImageBase</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.ImageCreateFromPC"><code class="docutils literal notranslate"><span class="pre">ImageCreateFromPC</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.ImageDB"><code class="docutils literal notranslate"><span class="pre">ImageDB</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.ImageModel"><code class="docutils literal notranslate"><span class="pre">ImageModel</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.ImageUpdate"><code class="docutils literal notranslate"><span class="pre">ImageUpdate</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.TagModel"><code class="docutils literal notranslate"><span class="pre">TagModel</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.TagResponse"><code class="docutils literal notranslate"><span class="pre">TagResponse</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.TokenModel"><code class="docutils literal notranslate"><span class="pre">TokenModel</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.UserDb"><code class="docutils literal notranslate"><span class="pre">UserDb</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.UserModel"><code class="docutils literal notranslate"><span class="pre">UserModel</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.UserProfile"><code class="docutils literal notranslate"><span class="pre">UserProfile</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.UserResponse"><code class="docutils literal notranslate"><span class="pre">UserResponse</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.schemas.UserUpdate"><code class="docutils literal notranslate"><span class="pre">UserUpdate</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">PhotoShare  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Welcome to PhotoShare’s documentation!</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, P.O.N.D.A.M 2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.3.7.
+    </div>
+  </body>
+</html>

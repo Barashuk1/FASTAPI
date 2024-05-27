@@ -14,6 +14,14 @@ LocalSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 test_session = LocalSession()
 
 def get_db():
+    """
+    The get_db function opens a new database connection if there is none yet
+    for the current application context.
+    It also binds the session to the current context so that you don’t have to
+    use db.session in each view function.
+
+    :return: A generator object
+    """
     db = LocalSession()
     try:
         yield db
