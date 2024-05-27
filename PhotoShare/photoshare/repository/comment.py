@@ -12,10 +12,10 @@ def get_comments_by_photo(db: Session, image_id: int) -> List[Comment]:
     given photo.
 
     :param db: Pass in the database session
-    :param image_id: Filter the comments by photo_id
+    :param image_id: Filter the comments by image_id
     :return: A list of Comment objects
     """
-    return db.query(Comment).filter(Comment.photo_id == image_id).all()
+    return db.query(Comment).filter(Comment.image_id == image_id).all()
 
 
 def create_comment_func(
