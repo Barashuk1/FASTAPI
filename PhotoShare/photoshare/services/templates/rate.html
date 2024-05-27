@@ -35,7 +35,7 @@
     <div class="navbar">
         <div>
             <a href="/">Стрічка</a>
-            <a href="/images/rate">Рейтинг</a>
+            <a href="/photoshare/images/rate">Рейтинг</a>
         </div>
         <div class="profile-icon">
             <a href="/profile"><i class="fas fa-user"></i></a>
@@ -44,7 +44,7 @@
     <div class="container">
         <h1>{{ "За зростанням" if order == 'asc' else "За спаданням" }}</h1>
         <div class="sort-buttons">
-            <form action="/images/rate" method="get">
+            <form action="/photoshare/images/rate" method="get">
                 <button type="submit" name="order" value="asc">Показати за зростанням</button>
                 <button type="submit" name="order" value="desc">Показати за спаданням</button>
             </form>

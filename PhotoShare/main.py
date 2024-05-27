@@ -87,7 +87,7 @@ async def main_page(
 if __name__ == '__main__':
     uvicorn.run(
         app='main:app',
-        host='0.0.0.0',
+        host='localhost',
         port=8000,
         reload=True
     )

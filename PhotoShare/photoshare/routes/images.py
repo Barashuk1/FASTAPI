@@ -9,7 +9,7 @@ from photoshare.database.models import User
 from photoshare.services.auth import auth_service
 
 router = APIRouter(prefix='/images', tags=["images"])
-templates = Jinja2Templates(directory="photoshare/templates")
+templates = Jinja2Templates(directory="photoshare/services/templates")
 
 
 @router.post("/add")
