@@ -191,3 +191,18 @@ def search_images_by_tags(
     """
     tags = [tag.strip() for tag in tags.split(",")]
     return search_images_by_tags_func(db, tags)
+
+
+@router.get('/search/user/{username}')
+def search_images_by_user(
+    username: str,
+    db: Session = Depends(get_db)
+) -> list[ImageDB]:
+    """
+    Search images by user
+
+    :param username: The username to search for
+    :param db: Database session
+    :return: The images found
+    """
+    return search_images_by_user_func(db, username)

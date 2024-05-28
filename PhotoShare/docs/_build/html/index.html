@@ -539,6 +539,29 @@ given photo.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="photoshare.repository.images.search_images_by_user_func">
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">search_images_by_user_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.search_images_by_user_func" title="Link to this definition">¶</a></dt>
+<dd><p>Function to search images by user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
+<li><p><strong>username</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – username of the user</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>HTTPException</strong> – if user doesn’t have permission to this type of search</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of ImageDB objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="photoshare.repository.images.update_image_func">
 <span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">update_image_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.update_image_func" title="Link to this definition">¶</a></dt>
 <dd><p>Function to update image in the database</p>
@@ -1111,6 +1134,26 @@ given photo.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tag</strong> – The tag to search for</p></li>
+<li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>[<a class="reference internal" href="#photoshare.schemas.ImageDB" title="photoshare.schemas.ImageDB"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageDB</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The images found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="photoshare.routes.images.search_images_by_user">
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">search_images_by_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.search_images_by_user" title="Link to this definition">¶</a></dt>
+<dd><p>Search images by user</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The username to search for</p></li>
 <li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
 </ul>
 </dd>
@@ -1848,6 +1891,7 @@ given photo.</p>
 <li><a class="reference internal" href="#photoshare.repository.images.rate_images_func"><code class="docutils literal notranslate"><span class="pre">rate_images_func()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.repository.images.search_images_by_description_func"><code class="docutils literal notranslate"><span class="pre">search_images_by_description_func()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.repository.images.search_images_by_tags_func"><code class="docutils literal notranslate"><span class="pre">search_images_by_tags_func()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.repository.images.search_images_by_user_func"><code class="docutils literal notranslate"><span class="pre">search_images_by_user_func()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.repository.images.update_image_func"><code class="docutils literal notranslate"><span class="pre">update_image_func()</span></code></a></li>
 </ul>
 </li>
@@ -1891,6 +1935,7 @@ given photo.</p>
 <li><a class="reference internal" href="#photoshare.routes.images.rate_images"><code class="docutils literal notranslate"><span class="pre">rate_images()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.routes.images.search_images_by_description"><code class="docutils literal notranslate"><span class="pre">search_images_by_description()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.routes.images.search_images_by_tags"><code class="docutils literal notranslate"><span class="pre">search_images_by_tags()</span></code></a></li>
+<li><a class="reference internal" href="#photoshare.routes.images.search_images_by_user"><code class="docutils literal notranslate"><span class="pre">search_images_by_user()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.routes.images.transform_image"><code class="docutils literal notranslate"><span class="pre">transform_image()</span></code></a></li>
 <li><a class="reference internal" href="#photoshare.routes.images.update_image"><code class="docutils literal notranslate"><span class="pre">update_image()</span></code></a></li>
 </ul>
