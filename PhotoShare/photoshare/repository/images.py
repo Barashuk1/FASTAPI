@@ -355,3 +355,24 @@ def search_images_by_tags_func(
     return list(set(db.query(Image).join(Image.tags).filter(
         Tag.name.in_(tags)
     ).all()))
+
+
+def search_images_by_user_func(
+    db: Session,
+    username: str
+) -> list[ImageDB]:
+    """
+    Function to search images by user
+
+    :param db: SQLAlchemy session
+    :param username: username of the user
+    :raise HTTPException: if user doesn't have permission to this type of search
+    :return: list of ImageDB objects
+    """
+    user = db.query(User).filter(User.username == username).first()
+    if user.role == 'user':
+        raise HTTPException(
+            status_code=400,
+            detail="You don't have permission to this type of search"
+        )
+    return db.query(Image).filter(Image.user_id == user.id).all()
