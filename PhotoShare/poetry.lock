@@ -1162,6 +1162,7 @@ pluggy = ">=1.5,<2.0"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "pygments (>=2.7.2)", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+
 name = "pytest-asyncio"
 version = "0.23.7"
 description = "Pytest support for asyncio"
@@ -1180,6 +1181,8 @@ docs = ["sphinx (>=5.3)", "sphinx-rtd-theme (>=1.0)"]
 testing = ["coverage (>=6.2)", "hypothesis (>=5.7.1)"]
 
 [[package]]
+=======
+
 name = "python-dotenv"
 version = "1.0.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -2031,4 +2034,6 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "4e0694e5313e7f87e336104e51ff1be1fc42cb93aa37bebfbd200eacacd8e544"
+
+content-hash = "e193df25fdc07cc846c559564456c9c8641a5ca2ffead18f3c31a890234bdafd"
+

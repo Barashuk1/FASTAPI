@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     redis_port: int
     redis_password: str
     cloudinary_name: str
-    cloudinary_api_key: str
+    cloudinary_api_key: int | str
     cloudinary_api_secret: str
 
     class ConfigDict:

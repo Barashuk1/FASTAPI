@@ -3,7 +3,7 @@ from typing import List
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
 from photoshare.database.models import Tag
-from photoshare.schemas import TagModel
+from photoshare.schemas import TagModel, TagResponse
 
 
 async def get_tags(
@@ -49,6 +49,7 @@ async def create_tag(
     """
     if db.query(Tag).filter(Tag.name == body.name).first():
         raise HTTPException(status_code=400, detail="Tag already created")
+#!!!!!!!!
     tag = Tag(name=body.name)
     db.add(tag)
     db.commit()
@@ -71,6 +72,7 @@ async def update_tag(
     """
     tag = db.query(Tag).filter(Tag.id == tag_id).first()
     if tag:
+        #!!!!!!!!
         tag.name = body.name
         db.commit()
     return tag

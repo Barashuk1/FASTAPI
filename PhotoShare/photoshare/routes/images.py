@@ -160,3 +160,49 @@ def transform_image(
     :return: The transformed image
     """
     return get_transformation_func(db, choice, image_id, current_user)
+
+
+@ router.get("/search/{description}")
+def search_images_by_description(
+    description: str,
+    db: Session = Depends(get_db)
+) -> list[ImageDB]:
+    """
+    Search images by description
+
+    :param info: The description to search for
+    :param db: Database session
+    :return: The images found
+    """
+    return search_images_by_description_func(db, description)
+
+
+@router.get('/search/tags/{tags}')
+def search_images_by_tags(
+    tags: str,
+    db: Session = Depends(get_db)
+) -> list[ImageDB]:
+    """
+    Search images by tag
+
+    :param tag: The tag to search for
+    :param db: Database session
+    :return: The images found
+    """
+    tags = [tag.strip() for tag in tags.split(",")]
+    return search_images_by_tags_func(db, tags)
+
+
+@router.get('/search/user/{username}')
+def search_images_by_user(
+    username: str,
+    db: Session = Depends(get_db)
+) -> list[ImageDB]:
+    """
+    Search images by user
+
+    :param username: The username to search for
+    :param db: Database session
+    :return: The images found
+    """
+    return search_images_by_user_func(db, username)
