@@ -144,33 +144,3 @@ async def update_user_info(
         db.refresh(user)
         return user
 
-
-# async def confirmed_email(email: str, db: Session) -> None:
-#     """
-#     Mark a user's email as confirmed.
-
-#     Parameters:
-#     - email (str): The email address of the user.
-#     - db (Session): The database session.
-#     """
-#     user = await get_user_by_email(email, db)
-#     user.confirmed = True
-#     db.commit()
-
-
-# async def update_avatar(email: str, url: str, db: Session) -> User:
-#     """
-#     Update a user's avatar URL.
-
-#     Parameters:
-#     - email (str): The email address of the user.
-#     - url (str): The new avatar URL.
-#     - db (Session): The database session.
-
-#     Returns:
-#     - User: The updated user.
-#     """
-#     user = await get_user_by_email(email, db)
-#     user.avatar = url
-#     db.commit()
-#     return user
