@@ -82,14 +82,14 @@ def load_image_from_pc_func(
     )
     if tags:
         try:
-            tags_list = tags.split(",")
+            tags_list = [tag.strip() for tag in tags.split(",")]
             image_tags = []
             for tag_name in tags_list:
                 # Перевіряємо, чи існує тег з такою назвою
                 tag = db.query(Tag).filter(Tag.name == tag_name).first()
                 if not tag:
                     # Якщо тега не існує, створюємо новий
-                    tag = Tag(name=tag_name.strip())
+                    tag = Tag(name=tag_name)
                     db.add(tag)
                     db.commit()
                     db.refresh(tag)
@@ -324,3 +324,34 @@ def generate_qr_code(image_url: str) -> str:
 
     return qr_code_url
 
+
+def search_images_by_description_func(
+    db: Session,
+    description: str
+) -> list[ImageDB]:
+    """
+    Function to search images by description
+
+    :param db: SQLAlchemy session
+    :param description: description of the image
+    :return: list of ImageDB objects
+    """
+    return db.query(Image).filter(
+        Image.description.ilike(f"%{description}%")
+    ).all()
+
+
+def search_images_by_tags_func(
+    db: Session,
+    tags: list[str]
+) -> list[ImageDB]:
+    """
+    Function to search images by tags
+
+    :param db: SQLAlchemy session
+    :param tags: list of tags
+    :return: list of ImageDB objects
+    """
+    return list(set(db.query(Image).join(Image.tags).filter(
+        Tag.name.in_(tags)
+    ).all()))
