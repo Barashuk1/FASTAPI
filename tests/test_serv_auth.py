@@ -4,8 +4,8 @@ from datetime import datetime, timedelta
 from jose import jwt
 from fastapi import HTTPException, status
 from sqlalchemy.orm import Session
-from photoshare.database.models import User
-from photoshare.services.auth import Auth
+from photoshare_src.database.models import User
+from photoshare_src.services.auth import Auth
 
 # Моделюємо залежності
 class MockDB:

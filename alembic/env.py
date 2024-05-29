@@ -5,8 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from photoshare.database.models import Base
-from photoshare.database.db import SQLALCHEMY_DATABASE_URL
+from photoshare_src.database.models import Base
+from photoshare_src.database.db import SQLALCHEMY_DATABASE_URL
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config

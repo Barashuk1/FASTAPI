@@ -3,8 +3,8 @@ import asyncio
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
-from photoshare.services.auth import auth_service
-from photoshare.repository.users import create_user, get_user_by_email
+from photoshare_src.services.auth import auth_service
+from photoshare_src.repository.users import create_user, get_user_by_email
 
 
 @pytest.fixture(scope="module")

@@ -1,9 +1,9 @@
 import pytest
 from sqlalchemy.orm import Session
-from photoshare.database.models import User, Image
-from photoshare.database.models import Base
-from photoshare.schemas import UserModel, UserUpdate
-from photoshare.repository.users import (
+from photoshare_src.database.models import User, Image
+from photoshare_src.database.models import Base
+from photoshare_src.schemas import UserModel, UserUpdate
+from photoshare_src.repository.users import (
     create_user,
     get_user_by_email,
     update_token,
@@ -12,7 +12,7 @@ from photoshare.repository.users import (
     get_user_by_username,
     update_user_info,
 )
-from photoshare.database.db import get_db
+from photoshare_src.database.db import get_db
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 from main import app

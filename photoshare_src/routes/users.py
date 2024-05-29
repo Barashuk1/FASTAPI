@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends,  APIRouter, HTTPException, status
-from photoshare.schemas import *
-from photoshare.database.db import Session, get_db
-from photoshare.services.auth import auth_service
-from photoshare.repository.users import *
+from photoshare_src.schemas import *
+from photoshare_src.database.db import Session, get_db
+from photoshare_src.services.auth import auth_service
+from photoshare_src.repository.users import *
 
 router = APIRouter(prefix='/user', tags=["user"])
 

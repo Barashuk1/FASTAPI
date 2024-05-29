@@ -7,11 +7,11 @@ from fastapi.security import (
     OAuth2PasswordRequestForm, HTTPAuthorizationCredentials, HTTPBearer
 )
 from sqlalchemy.orm import Session
-from photoshare.database.db import get_db
-from photoshare.schemas import UserModel, UserResponse, TokenModel, UserDb
-from photoshare.repository import users as repository_users
-from photoshare.database.models import User
-from photoshare.services.auth import auth_service
+from photoshare_src.database.db import get_db
+from photoshare_src.schemas import UserModel, UserResponse, TokenModel, UserDb
+from photoshare_src.repository import users as repository_users
+from photoshare_src.database.models import User
+from photoshare_src.services.auth import auth_service
 # from photoshare.services.email import send_email
 
 router = APIRouter(prefix='/auth', tags=["auth"])

@@ -83,9 +83,9 @@
 import unittest
 from unittest.mock import AsyncMock, MagicMock
 from fastapi import HTTPException
-from photoshare.database.models import Tag
-from photoshare.repository.tags import create_tag, get_tag, remove_tag, update_tag, get_tags
-from photoshare.schemas import TagModel
+from photoshare_src.database.models import Tag
+from photoshare_src.repository.tags import create_tag, get_tag, remove_tag, update_tag, get_tags
+from photoshare_src.schemas import TagModel
 
 class TestTagRepository(unittest.IsolatedAsyncioTestCase):
 

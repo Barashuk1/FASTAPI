@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import MagicMock
 from sqlalchemy.orm import Session
-from photoshare.repository.comment import *
-from photoshare.database.models import Comment, User
-from photoshare.schemas import *
+from photoshare_src.repository.comment import *
+from photoshare_src.database.models import Comment, User
+from photoshare_src.schemas import *
 
 
 @pytest.fixture

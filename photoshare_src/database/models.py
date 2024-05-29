@@ -6,7 +6,7 @@ from sqlalchemy.orm import (
 )
 from datetime import datetime
 
-from photoshare.database.db import engine
+from photoshare_src.database.db import engine
 
 Base = declarative_base()
 

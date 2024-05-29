@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
-from photoshare.database.db import get_db
-from photoshare.database.models import Comment, User
-from photoshare.schemas import CommentCreate, CommentResponse as CommentSchema
+from photoshare_src.database.db import get_db
+from photoshare_src.database.models import Comment, User
+from photoshare_src.schemas import CommentCreate, CommentResponse as CommentSchema
 from datetime import datetime
-from photoshare.repository.comment import *
-from photoshare.services.auth import auth_service
+from photoshare_src.repository.comment import *
+from photoshare_src.services.auth import auth_service
 
 router = APIRouter(prefix='/images', tags=["comments"])
 

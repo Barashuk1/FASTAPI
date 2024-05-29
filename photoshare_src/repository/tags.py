@@ -2,8 +2,8 @@ from typing import List
 
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status
-from photoshare.database.models import Tag
-from photoshare.schemas import TagModel, TagResponse
+from photoshare_src.database.models import Tag
+from photoshare_src.schemas import TagModel, TagResponse
 
 
 async def get_tags(

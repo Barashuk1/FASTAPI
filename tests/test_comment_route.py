@@ -3,9 +3,9 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from unittest.mock import MagicMock
 from datetime import datetime
-from photoshare.database.models import Comment, User
-from photoshare.schemas import CommentCreate
-from photoshare.routes.comment import (
+from photoshare_src.database.models import Comment, User
+from photoshare_src.schemas import CommentCreate
+from photoshare_src.routes.comment import (
     create_comment_func,
     read_comments_func,
     edit_comment_func,

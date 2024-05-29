@@ -1,7 +1,7 @@
-from photoshare.database.db import Session
-from photoshare.database.models import Image, User, Tag
-from photoshare.schemas import *
-from photoshare.conf.config import settings
+from photoshare_src.database.db import Session
+from photoshare_src.database.models import Image, User, Tag
+from photoshare_src.schemas import *
+from photoshare_src.conf.config import settings
 from fastapi import HTTPException
 from fastapi import FastAPI, File, UploadFile
 from sqlalchemy import and_

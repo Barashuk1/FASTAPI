@@ -4,11 +4,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
 from main import app
-from photoshare.database.models import Base
-from photoshare.database.models import User
-from photoshare.database.db import get_db
-from photoshare.repository.users import create_user, get_user_by_email
-from photoshare.services.auth import auth_service
+from photoshare_src.database.models import Base
+from photoshare_src.database.models import User
+from photoshare_src.database.db import get_db
+from photoshare_src.repository.users import create_user, get_user_by_email
+from photoshare_src.services.auth import auth_service
 from unittest.mock import MagicMock
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"

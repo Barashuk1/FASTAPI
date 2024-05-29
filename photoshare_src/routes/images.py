@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Depends,  APIRouter
-from photoshare.schemas import *
-from photoshare.database.db import Session, get_db
-from photoshare.repository.images import *
+from photoshare_src.schemas import *
+from photoshare_src.database.db import Session, get_db
+from photoshare_src.repository.images import *
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from fastapi.templating import Jinja2Templates
-from photoshare.database.models import User
-from photoshare.services.auth import auth_service
+from photoshare_src.database.models import User
+from photoshare_src.services.auth import auth_service
 
 router = APIRouter(prefix='/images', tags=["images"])
 templates = Jinja2Templates(directory="photoshare/services/templates")

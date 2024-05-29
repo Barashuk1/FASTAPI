@@ -1,9 +1,9 @@
 
 from fastapi import FastAPI, Depends,  APIRouter, HTTPException
-from photoshare.schemas import *
-from photoshare.database.db import Session
-from photoshare.database.models import Comment, User
-from photoshare.routes import *
+from photoshare_src.schemas import *
+from photoshare_src.database.db import Session
+from photoshare_src.database.models import Comment, User
+from photoshare_src.routes import *
 
 
 def get_comments_by_photo(db: Session, image_id: int) -> List[Comment]:

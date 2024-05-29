@@ -1,15 +1,15 @@
 import sys
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from photoshare.routes import images, tags, auth, comment, users
+from photoshare_src.routes import images, tags, auth, comment, users
 import uvicorn
-from photoshare.conf.config import settings
+from photoshare_src.conf.config import settings
 
-from photoshare.database.db import Session, get_db
+from photoshare_src.database.db import Session, get_db
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
 from fastapi.responses import HTMLResponse
-from photoshare.database.models import Image, Tag
+from photoshare_src.database.models import Image, Tag
 
 app = FastAPI()
 

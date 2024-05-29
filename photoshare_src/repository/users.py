@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
-from photoshare.database.models import User, Image
-from photoshare.schemas import UserModel
+from photoshare_src.database.models import User, Image
+from photoshare_src.schemas import UserModel
 from sqlalchemy import func
-from photoshare.schemas import *
+from photoshare_src.schemas import *
 from fastapi import HTTPException
 
 

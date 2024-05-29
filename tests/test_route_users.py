@@ -1,9 +1,9 @@
 from unittest.mock import patch
 from main import app 
 import pytest
-from photoshare.services.auth import auth_service
-from photoshare.repository.users import create_user, get_user_by_email
-from photoshare.schemas import UserModel
+from photoshare_src.services.auth import auth_service
+from photoshare_src.repository.users import create_user, get_user_by_email
+from photoshare_src.schemas import UserModel
 
 
 @pytest.mark.asyncio

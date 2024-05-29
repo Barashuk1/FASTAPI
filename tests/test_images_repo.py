@@ -1,9 +1,9 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from sqlalchemy.orm import Session
-from photoshare.repository.images import *
-from photoshare.database.models import Image, User, Tag, Comment
-from photoshare.schemas import *
+from photoshare_src.repository.images import *
+from photoshare_src.database.models import Image, User, Tag, Comment
+from photoshare_src.schemas import *
 from fastapi import HTTPException
 from io import BytesIO
 from datetime import datetime, timezone

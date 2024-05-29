@@ -6,11 +6,11 @@ from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
-from photoshare.database.models import User
+from photoshare_src.database.models import User
 
-from photoshare.database.db import get_db
-from photoshare.repository import users as repository_users
-from photoshare.conf.config import settings
+from photoshare_src.database.db import get_db
+from photoshare_src.repository import users as repository_users
+from photoshare_src.conf.config import settings
 
 
 class Auth:
