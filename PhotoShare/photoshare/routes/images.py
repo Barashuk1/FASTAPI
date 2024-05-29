@@ -58,7 +58,7 @@ def load_image_from_pc(
 
 @router.get("/url/{url_view}")
 def get_image_url(
-    url_view: str,
+    url: str,
     db: Session = Depends(get_db)
 ) -> ImageDB:
     """
@@ -68,7 +68,7 @@ def get_image_url(
     :param db: Database session
     :return: The image
     """
-    return get_image_url_func(db, url_view)
+    return get_image_url_func(db, url)
 
 
 @router.get('/rate')

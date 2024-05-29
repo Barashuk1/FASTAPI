@@ -194,7 +194,7 @@ def get_image_url_func(
     :param url_view: url_view of the image
     :return: ImageDB object
     """
-    db_image = db.query(Image).filter(Image.url_view == url_view).first()
+    db_image = db.query(Image).filter(Image.url == url_view).first()
     return db_image
 
 
