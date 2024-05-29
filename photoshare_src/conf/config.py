@@ -27,6 +27,10 @@ class Settings(BaseSettings):
     - env_file_encoding (str): The encoding of the environment file (default: "utf-8").
     - extra (str): The behavior for extra fields in the environment file (default: "ignore").
     """
+    postgres_db: str
+    postgres_user: str
+    postgres_password: str
+    postgres_host: str
     sqlalchemy_database_url: str
     secret_key: str
     algorithm: str

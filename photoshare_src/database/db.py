@@ -1,10 +1,17 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, URL
 from sqlalchemy.orm import sessionmaker, Session
 
 
 from photoshare_src.conf.config import settings
 
-SQLALCHEMY_DATABASE_URL = settings.sqlalchemy_database_url
+# SQLALCHEMY_DATABASE_URL = settings.sqlalchemy_database_url
+SQLALCHEMY_DATABASE_URL = URL.create(
+    'postgresql+psycopg2',
+    username=settings.postgres_user,
+    password=settings.postgres_password,
+    host=settings.postgres_host,
+    database=settings.postgres_db
+)
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 LocalSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
