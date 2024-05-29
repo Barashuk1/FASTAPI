@@ -56,7 +56,7 @@ def load_image_from_pc(
     """
     return load_image_from_pc_func(db, description, current_user, file, tags)
 
-@router.get("/url/{url_view}")
+@router.get("/url/{url}")
 def get_image_url(
     url: str,
     db: Session = Depends(get_db)

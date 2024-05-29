@@ -292,7 +292,7 @@ given photo.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Pass in the database session</p></li>
-<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Filter the comments by photo_id</p></li>
+<li><p><strong>image_id</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></span>) – Filter the comments by image_id</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -390,13 +390,13 @@ given photo.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="photoshare.repository.images.get_image_url_func">
-<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url_view</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.get_image_url_func" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">photoshare.repository.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">db</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.repository.images.get_image_url_func" title="Link to this definition">¶</a></dt>
 <dd><p>Function to get image by url_view</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – SQLAlchemy session</p></li>
-<li><p><strong>url_view</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – url_view of the image</p></li>
+<li><p><strong>url_view</strong> – url_view of the image</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -1022,12 +1022,12 @@ given photo.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="photoshare.routes.images.get_image_url">
-<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url_view</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.get_image_url" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">photoshare.routes.images.</span></span><span class="sig-name descname"><span class="pre">get_image_url</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Depends(get_db)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.routes.images.get_image_url" title="Link to this definition">¶</a></dt>
 <dd><p>Get an image by its URL</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>url_view</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>) – The URL of the image</p></li>
+<li><p><strong>url_view</strong> – The URL of the image</p></li>
 <li><p><strong>db</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Session</span></code></span>) – Database session</p></li>
 </ul>
 </dd>
@@ -1696,7 +1696,7 @@ given photo.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="photoshare.schemas.ImageUpdate">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">photoshare.schemas.</span></span><span class="sig-name descname"><span class="pre">ImageUpdate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#photoshare.schemas.ImageUpdate" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#photoshare.schemas.ImageModel" title="photoshare.schemas.ImageModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageModel</span></code></a></p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
 <p>Pydantic model representing image data used for image update.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

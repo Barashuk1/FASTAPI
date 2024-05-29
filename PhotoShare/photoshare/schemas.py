@@ -83,10 +83,11 @@ class ImageDB(ImageBase):
     url_view: str | None
     qr_code_view: str | None
     tags: List[TagResponse]
+    comments: List['CommentSchema']
     user_id: int
 
 
-class ImageUpdate(ImageModel):
+class ImageUpdate(BaseModel):
     """
     Pydantic model representing image data used for image update.
 

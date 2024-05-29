@@ -9,9 +9,6 @@ engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 LocalSession = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-# Сесія для тестів моделей
-# ПОТІМ ТРЕБА ПРИБРАТИ
-test_session = LocalSession()
 
 def get_db():
     """

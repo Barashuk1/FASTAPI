@@ -2,7 +2,7 @@
 from fastapi import FastAPI, Depends,  APIRouter, HTTPException
 from photoshare.schemas import *
 from photoshare.database.db import Session
-from photoshare.database.models import Comment, User
+from photoshare.database.models import Comment, User, Image
 from photoshare.routes import *
 
 
@@ -33,12 +33,14 @@ def create_comment_func(
     :param user: Get the user_id of the comment creator
     :return: A Comment object
     """
+    image = db.query(Image).filter(Image.id == image_id).first()
     db_comment = Comment(text=comment.text, image_id=image_id)
     db_comment.user_id = user.id
     db_comment.created_at = datetime.now()
     db.add(db_comment)
     db.commit()
     db.refresh(db_comment)
+    image.comments.append(db_comment)
     return db_comment
 
 

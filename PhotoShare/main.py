@@ -45,26 +45,6 @@ if 'StaticFiles' in globals():
 
 templates = Jinja2Templates(directory="photoshare/services/templates")
 
-# @app.on_event("startup")
-# async def startup():
-#     r = await redis.Redis(
-#         host=settings.redis_host,
-#         port=settings.redis_port,
-#         password=settings.redis_password,
-#         db=0, encoding="utf-8", decode_responses=True
-#     )
-#     await FastAPILimiter.init(r)
-
-# @app.get("/")
-# def read_root():
-#     """
-#     The read_root function returns a dictionary with the key 'message' and
-#     value &quot;Wellcome to PhotoShare API!&quot;.
-
-#     :return: A dictionary
-#     """
-#     return {"message": "Wellcome to PhotoShare API!"}
-
 
 @app.get("/", response_class=HTMLResponse)
 async def main_page(
