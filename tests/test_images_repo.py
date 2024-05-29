@@ -70,7 +70,7 @@ def test_load_image_func(mock_db_session, mock_image_base, mock_tags, mock_user)
     mock_db_session.refresh.assert_called()
 
 
-@patch("photoshare.repository.images.cloudinary.uploader.upload")
+@patch("photoshare_src.repository.images.cloudinary.uploader.upload")
 def test_load_image_from_pc_func(mock_upload, mock_db_session, mock_upload_file, mock_user, mock_tags):
     mock_upload.return_value = {"url": "http://example.com/uploaded_image.jpg"}
     mock_tag = Tag(id=1, name="tag1")
@@ -188,7 +188,7 @@ def test_rate_images_func_desc(mock_db_session):
     assert result == mock_images
 
 
-@patch("photoshare.repository.images.CloudinaryImage")
+@patch("photoshare_src.repository.images.CloudinaryImage")
 def test_get_transformation_func(mock_cloudinary_image, mock_db_session, mock_user):
     mock_image = Image(id=1, url="http://example.com/image.jpg", user_id=1)
     mock_db_session.query().filter().first.return_value = mock_image
@@ -196,7 +196,7 @@ def test_get_transformation_func(mock_cloudinary_image, mock_db_session, mock_us
     mock_transformed_image_url = "http://example.com/transformed_image.jpg"
     mock_cloudinary_image.return_value.build_url.return_value = mock_transformed_image_url
 
-    with patch("photoshare.repository.images.generate_qr_code", return_value="http://example.com/qr_code.jpg"):
+    with patch("photoshare_src.repository.images.generate_qr_code", return_value="http://example.com/qr_code.jpg"):
         result = get_transformation_func(mock_db_session, 1, 1, mock_user)
 
     assert result.url_view == mock_transformed_image_url
@@ -207,7 +207,7 @@ def test_get_transformation_func(mock_cloudinary_image, mock_db_session, mock_us
 
 def test_generate_qr_code():
     image_url = "http://example.com/image.jpg"
-    with patch("photoshare.repository.images.cloudinary.uploader.upload", return_value={"url": "http://example.com/qr_code.jpg"}) as mock_upload:
+    with patch("photoshare_src.repository.images.cloudinary.uploader.upload", return_value={"url": "http://example.com/qr_code.jpg"}) as mock_upload:
         result = generate_qr_code(image_url)
         assert result == "http://example.com/qr_code.jpg"
         mock_upload.assert_called()

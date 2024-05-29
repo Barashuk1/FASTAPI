@@ -40,10 +40,10 @@ else:
 
 if 'StaticFiles' in globals():
     app.mount(
-        "/static", StaticFiles(directory="photoshare/static"), name="static"
+        "/static", StaticFiles(directory="photoshare_src/static"), name="static"
     )
 
-templates = Jinja2Templates(directory="photoshare/services/templates")
+templates = Jinja2Templates(directory="photoshare_src/services/templates")
 
 # @app.on_event("startup")
 # async def startup():

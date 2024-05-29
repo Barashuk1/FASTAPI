@@ -26,7 +26,7 @@
 #     return user
 
 
-# @patch("photoshare.routes.images.load_image_func")
+# @patch("photoshare_src.routes.images.load_image_func")
 # def test_load_image_func(mock_load_image_func):
 #     tags = ["tag1", "tag2"]
 #     image = ImageModel()  # Create a mock ImageModel object
@@ -40,7 +40,7 @@
 #     mock_load_image_func.assert_called_once_with(mock_db_session, image, tags, mock_user)
 
 # # Test load_image_from_pc_func
-# @patch("photoshare.routes.images.load_image_from_pc_func")
+# @patch("photoshare_src.routes.images.load_image_from_pc_func")
 # def test_load_image_from_pc_func(mock_load_image_from_pc_func):
 #     description = "Test description"
 #     file_data = UploadFile(filename="test.jpg")  # Create a mock UploadFile object
@@ -55,7 +55,7 @@
 #     mock_load_image_from_pc_func.assert_called_once_with(mock_db_session, description, mock_user, file_data, tags)
 
 # # Test get_image_url_func
-# @patch("photoshare.routes.images.get_image_url_func")
+# @patch("photoshare_src.routes.images.get_image_url_func")
 # def test_get_image_url_func(mock_get_image_url_func):
 #     url_view = "test_url"
 #     expected_result = ImageDB()  # Create a mock ImageDB object as expected result
@@ -68,7 +68,7 @@
 #     mock_get_image_url_func.assert_called_once_with(mock_db_session, url_view)
 
 # # Test rate_images_func
-# @patch("photoshare.routes.images.rate_images_func")
+# @patch("photoshare_src.routes.images.rate_images_func")
 # def test_rate_images_func(mock_rate_images_func):
 #     order = "asc"
 #     expected_result = []  # Define expected result, it could be a list of ImageDB objects
@@ -81,7 +81,7 @@
 #     mock_rate_images_func.assert_called_once_with(mock_db_session, order)
 
 # # Test delete_image_func
-# @patch("photoshare.routes.images.delete_image_func")
+# @patch("photoshare_src.routes.images.delete_image_func")
 # def test_delete_image_func(mock_delete_image_func):
 #     image_id = 1
 #     expected_result = ImageDB()  # Create a mock ImageDB object as expected result
@@ -94,7 +94,7 @@
 #     mock_delete_image_func.assert_called_once_with(mock_db_session, image_id, mock_user)
 
 # # Test update_image_func
-# @patch("photoshare.routes.images.update_image_func")
+# @patch("photoshare_src.routes.images.update_image_func")
 # def test_update_image_func(mock_update_image_func):
 #     image_id = 1
 #     image_update = ImageUpdate()  # Create a mock ImageUpdate object
@@ -108,7 +108,7 @@
 #     mock_update_image_func.assert_called_once_with(mock_db_session, image_id, image_update, mock_user)
 
 # # Test get_image_func
-# @patch("photoshare.routes.images.get_image_func")
+# @patch("photoshare_src.routes.images.get_image_func")
 # def test_get_image_func(mock_get_image_func):
 #     image_id = 1
 #     expected_result = ImageDB()  # Create a mock ImageDB object as expected result
@@ -121,7 +121,7 @@
 #     mock_get_image_func.assert_called_once_with(mock_db_session, image_id)
 
 # # Test get_transformation_func
-# @patch("photoshare.routes.images.get_transformation_func")
+# @patch("photoshare_src.routes.images.get_transformation_func")
 # def test_get_transformation_func(mock_get_transformation_func):
 #     image_id = 1
 #     choice = 1
